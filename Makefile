@@ -11,7 +11,7 @@ CC	= gcc
 CFLAGS= $(OPT) $(PIC) $(XOPTS)
 
 SOFLAGS = -shared 
-XLIBS	= #L/usr/lib64/atlas -lcblas # Not sure about this one, maybe -L/usr/lib64/atlas?
+XLIBS	= -L/usr/lib64/atlas -lsatlas
 
 $(TARGET): $(LIBOBJS)
 	$(CC) -o $@ $(SOFLAGS) $(LIBOBJS) $(XLIBS)
