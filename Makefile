@@ -1,5 +1,5 @@
 TARGET	= libmatmult.so
-LIBSRCS	= matmult_lib.c matmult_nat.c
+LIBSRCS	= matmult_lib.c matmult_nat.c cblast.h
 LIBOBJS	= $(LIBSRCS:.c=.o)
 
 OPT	= -g 
@@ -9,7 +9,7 @@ CC	= gcc
 CFLAGS= $(OPT) $(PIC) $(XOPTS)
 
 SOFLAGS = -shared 
-XLIBS	= -L/usr/lib64/gsl -lcblas # Not sure about this one, maybe -L/usr/lib64/atlas?
+XLIBS	= #L/usr/lib64/atlas -lcblas # Not sure about this one, maybe -L/usr/lib64/atlas?
 
 $(TARGET): $(LIBOBJS)
 	$(CC) -o $@ $(SOFLAGS) $(LIBOBJS) $(XLIBS)
