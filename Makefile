@@ -7,7 +7,7 @@ LIBOBJS	= $(LIBSRCS:.c=.o)
 OPT	= -g 
 PIC	= -fPIC
 
-CC	= gcc
+CC	= gcc -std=gnu99
 CFLAGS= $(OPT) $(PIC) $(XOPTS)
 
 SOFLAGS = -shared 
