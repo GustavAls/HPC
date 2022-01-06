@@ -1,0 +1,222 @@
+Loaded module: openblas/0.2.14
+     1.148    416.324 # matmult_kmn
+     1.898    675.026 # matmult_kmn
+     3.961   1154.822 # matmult_kmn
+     8.461   1531.681 # matmult_kmn
+    15.844   1709.363 # matmult_kmn
+    32.086   1899.214 # matmult_kmn
+    63.375   1971.916 # matmult_kmn
+   128.344   1922.001 # matmult_kmn
+   258.398   2031.190 # matmult_kmn
+   513.375   2052.711 # matmult_kmn
+  1023.773   2055.052 # matmult_kmn
+  2053.500   2139.877 # matmult_kmn
+  4095.094   2204.682 # matmult_kmn
+  8186.273   2251.913 # matmult_kmn
+ 16380.375   2281.868 # matmult_kmn
+ 32745.094   2298.771 # matmult_kmn
+ 65521.500   2295.212 # matmult_kmn
+131091.211   1677.872 # matmult_kmn
+262086.000   1662.267 # matmult_kmn
+     1.148    413.832 # matmult_knm
+     1.898    655.770 # matmult_knm
+     3.961    994.961 # matmult_knm
+     8.461   1241.950 # matmult_knm
+    15.844   1314.017 # matmult_knm
+    32.086   1377.628 # matmult_knm
+    63.375   1147.159 # matmult_knm
+   128.344   1326.989 # matmult_knm
+   258.398   1340.750 # matmult_knm
+   513.375   1093.222 # matmult_knm
+  1023.773    804.688 # matmult_knm
+  2053.500    520.063 # matmult_knm
+  4095.094    504.676 # matmult_knm
+  8186.273    503.080 # matmult_knm
+ 16380.375    501.977 # matmult_knm
+ 32745.094    492.197 # matmult_knm
+ 65521.500    396.057 # matmult_knm
+131091.211    266.003 # matmult_knm
+262086.000    265.736 # matmult_knm
+     1.148    429.525 # matmult_mkn
+     1.898    704.943 # matmult_mkn
+     3.961   1160.609 # matmult_mkn
+     8.461   1520.139 # matmult_mkn
+    15.844   1704.391 # matmult_mkn
+    32.086   1880.613 # matmult_mkn
+    63.375   1961.551 # matmult_mkn
+   128.344   1855.952 # matmult_mkn
+   258.398   2042.069 # matmult_mkn
+   513.375   2097.049 # matmult_mkn
+  1023.773   2138.509 # matmult_mkn
+  2053.500   2246.946 # matmult_mkn
+  4095.094   2289.872 # matmult_mkn
+  8186.273   2336.122 # matmult_mkn
+ 16380.375   2346.691 # matmult_mkn
+ 32745.094   2318.661 # matmult_mkn
+ 65521.500   2016.921 # matmult_mkn
+131091.211   1867.196 # matmult_mkn
+262086.000   1818.663 # matmult_mkn
+     1.148    440.461 # matmult_mnk
+     1.898    728.252 # matmult_mnk
+     3.961   1179.087 # matmult_mnk
+     8.461   1514.042 # matmult_mnk
+    15.844   1649.730 # matmult_mnk
+    32.086   1663.135 # matmult_mnk
+    63.375   1496.086 # matmult_mnk
+   128.344   1451.370 # matmult_mnk
+   258.398   1426.175 # matmult_mnk
+   513.375   1379.580 # matmult_mnk
+  1023.773   1134.159 # matmult_mnk
+  2053.500   1211.916 # matmult_mnk
+  4095.094   1150.206 # matmult_mnk
+  8186.273   1050.038 # matmult_mnk
+ 16380.375   1145.589 # matmult_mnk
+ 32745.094    976.022 # matmult_mnk
+ 65521.500    722.562 # matmult_mnk
+131091.211    437.546 # matmult_mnk
+262086.000    468.454 # matmult_mnk
+     1.148    417.110 # matmult_nkm
+     1.898    668.406 # matmult_nkm
+     3.961   1011.311 # matmult_nkm
+     8.461   1284.192 # matmult_nkm
+    15.844   1391.772 # matmult_nkm
+    32.086   1444.893 # matmult_nkm
+    63.375   1225.805 # matmult_nkm
+   128.344   1323.122 # matmult_nkm
+   258.398   1298.246 # matmult_nkm
+   513.375   1059.553 # matmult_nkm
+  1023.773    781.887 # matmult_nkm
+  2053.500    525.571 # matmult_nkm
+  4095.094    508.420 # matmult_nkm
+  8186.273    505.759 # matmult_nkm
+ 16380.375    504.160 # matmult_nkm
+ 32745.094    372.652 # matmult_nkm
+ 65521.500    391.391 # matmult_nkm
+131091.211    262.596 # matmult_nkm
+262086.000    266.870 # matmult_nkm
+     1.148    443.039 # matmult_nmk
+     1.898    731.920 # matmult_nmk
+     3.961   1173.587 # matmult_nmk
+     8.461   1512.329 # matmult_nmk
+    15.844   1647.387 # matmult_nmk
+    32.086   1669.389 # matmult_nmk
+    63.375   1407.418 # matmult_nmk
+   128.344   1471.427 # matmult_nmk
+   258.398   1432.449 # matmult_nmk
+   513.375   1381.882 # matmult_nmk
+  1023.773   1325.544 # matmult_nmk
+  2053.500   1296.312 # matmult_nmk
+  4095.094   1293.863 # matmult_nmk
+  8186.273   1157.605 # matmult_nmk
+ 16380.375   1234.660 # matmult_nmk
+ 32745.094   1231.038 # matmult_nmk
+ 65521.500   1228.633 # matmult_nmk
+131091.211    923.147 # matmult_nmk
+262086.000    458.543 # matmult_nmk
+     1.148    475.088 # matmult_lib
+     1.898    849.679 # matmult_lib
+     3.961   1801.829 # matmult_lib
+     8.461   2836.144 # matmult_lib
+    15.844   3333.763 # matmult_lib
+    32.086   3784.745 # matmult_lib
+    63.375   6234.946 # matmult_lib
+   128.344   5043.139 # matmult_lib
+   258.398   5434.754 # matmult_lib
+   513.375   7214.401 # matmult_lib
+  1023.773   7071.774 # matmult_lib
+  2053.500   8232.449 # matmult_lib
+  4095.094   8338.023 # matmult_lib
+  8186.273   7277.888 # matmult_lib
+ 16380.375   8407.620 # matmult_lib
+ 32745.094   8454.497 # matmult_lib
+ 65521.500   8464.553 # matmult_lib
+131091.211   7939.166 # matmult_lib
+262086.000   8517.684 # matmult_lib
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11980527: <mm_batch> in cluster <dcc> Done
+
+Job <mm_batch> was submitted from host <n-62-27-23> by user <s174450> in cluster <dcc> at Thu Jan  6 16:53:39 2022
+Job was executed on host(s) <n-62-21-77>, in queue <hpcintro>, as user <s174450> in cluster <dcc> at Thu Jan  6 16:53:40 2022
+</zhome/a9/a/127079> was used as the home directory.
+</zhome/a9/a/127079/Assignment1> was used as the working directory.
+Started at Thu Jan  6 16:53:40 2022
+Terminated at Thu Jan  6 17:22:44 2022
+Results reported at Thu Jan  6 17:22:44 2022
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# 02614 - High-Performance Computing, January 2022
+# 
+# batch script to run matmult on a decidated server in the hpcintro
+# queue
+#
+# Author: Bernd Dammann <bd@cc.dtu.dk>
+#
+#BSUB -J mm_batch
+#BSUB -o O3_Fun_%J.out
+#BSUB -q hpcintro
+#BSUB -n 1
+#BSUB -R "rusage[mem=2048]"
+#BSUB -W 01:00
+# uncomment the following line, if you want to assure that your job has
+# a whole CPU for itself (shared L3 cache)
+# #BSUB -R "span[hosts=1] affinity[socket(1)]"
+
+module load openblas
+
+# define the driver name to use
+# valid values: matmult_c.studio, matmult_f.studio, matmult_c.gcc or
+# matmult_f.gcc
+#
+EXECUTABLE=matmult_c.gcc
+
+# define the mkn values in the MKN variable
+#
+SIZES="7 9 13 19 26 37 52 74 105 148 209 296 418 591 836 1182 1672 2365 3344"
+
+# define the permutation type in PERM
+#
+PERM="kmn knm mkn mnk nkm nmk lib"
+
+# uncomment and set a reasonable BLKSIZE for the blk version
+#
+# BLKSIZE=1
+
+# enable(1)/disable(0) result checking
+export MATMULT_COMPARE=0
+export MATMULT_RESULTS=0
+# start the collect command with the above settings
+for P in $PERM
+do
+    for S in $SIZES
+    do
+        ./$EXECUTABLE $P $S $S $S $BLKSIZE
+    done
+done
+
+
+(... more ...)
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1743.10 sec.
+    Max Memory :                                 260 MB
+    Average Memory :                             184.27 MB
+    Total Requested Memory :                     2048.00 MB
+    Delta Memory :                               1788.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   1751 sec.
+    Turnaround time :                            1745 sec.
+
+The output (if any) is above this job summary.
+

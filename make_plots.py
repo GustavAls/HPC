@@ -1,21 +1,51 @@
-import sys
-from numpy import loadtxt
-
+import matplotlib.pyplot as plt
+import re
 
 def make_plot(input_file
             #, output_dir
             ):
 
     output_file = []
+    text = open(input_file, 'rt').read()
+    output_file = text.split('\n\n',1)[0]
+    output_file = output_file.split('\n')
+    # Remove first number from "openblas version"
+    output_file = output_file[1:]
+    perms = ['kmn', 'knm', 'mkn', 'mnk', 'nkm', 'nmk', 'lib']
 
-    with input_file as file:
-        for l in file:
-            output_file.append(l)
+    # Make index for each permutation
+    idx = dict.fromkeys(perms)
+    for p in perms:
+        idx[p] = [i for i in range(len(output_file)) if output_file[i].find(p) != -1]
 
-    perms = ['kmn', 'knm', 'mkn', 'mnk', '']
+    for i in range(len(output_file)):
+        output_file[i] = re.findall("\d+\.\d+", output_file[i])
 
-    indx_kmn = [i for i in range(len(output_file)) if output_file[i].find('kmn') != -1]
-    indx_
+    # Plot setup
+    AOS_COLOR = "tab:red"
+    SOA_COLOR = "tab:blue"
+    COLORS = ["tab:red", "tab:blue", "slategrey", "tab:green", "black", "tab:pink", "tab:purple"]
+    L0 = 64.0
+    L1 = 256.0
+    L2 = 30720.0
+
+    # Plot
+    plt.figure(figsize=(20,15))
+    for i, key in enumerate(idx.keys()):
+        plt.plot([float(output_file[i][0]) for i in idx[key]],
+                 [float(output_file[i][1]) for i in idx[key]],
+                 color = COLORS[i],
+                 label = key)
+        plt.ticklabel_format(axis="both", style="sci", scilimits=(0,0))
+    plt.axvline(L0, ls = '--')
+    plt.axvline(L1, ls = '--')
+    plt.axvline(L2, ls = '--')
+    plt.xlabel("Mem usage in kbytes")
+    plt.ylabel("Mflop/s")
+    plt.legend()
+    plt.title("Performance with -O3 -Fun compiler")
+    plt.show()
+
 
 if __name__ == "__main__":
-    make_plot("Nothing_11977092.out")
+    make_plot("O3_Fun_11980527.out")
