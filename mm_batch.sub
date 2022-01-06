@@ -7,7 +7,7 @@
 # Author: Bernd Dammann <bd@cc.dtu.dk>
 #
 #BSUB -J mm_batch
-#BSUB -o mm_batch_%J.out
+#BSUB -o Nothing_%J.out
 #BSUB -q hpcintro
 #BSUB -n 1
 #BSUB -R "rusage[mem=2048]"
@@ -24,7 +24,7 @@ EXECUTABLE=matmult_c.gcc
 
 # define the mkn values in the MKN variable
 #
-SIZES="100 200 500"
+SIZES="7 9 13 19 26 37 52 74 105 148 209 296 418 591 836 1182 1672 2365 3344"
 
 # define the permutation type in PERM
 #
@@ -36,7 +36,7 @@ PERM="kmn knm mkn mnk nkm nmk lib"
 
 # enable(1)/disable(0) result checking
 export MATMULT_COMPARE=1
-
+export MATMULT_RESULTS=0
 # start the collect command with the above settings
 for P in $PERM
 do

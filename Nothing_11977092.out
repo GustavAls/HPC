@@ -1,0 +1,162 @@
+     1.148    198.974 0 # matmult_kmn
+     1.898    240.782 0 # matmult_kmn
+     3.961    281.753 0 # matmult_kmn
+     8.461    279.560 0 # matmult_kmn
+    15.844    302.539 0 # matmult_kmn
+    32.086    298.267 0 # matmult_kmn
+    63.375    303.537 0 # matmult_kmn
+   128.344    309.565 0 # matmult_kmn
+   258.398    312.177 0 # matmult_kmn
+   513.375    313.953 0 # matmult_kmn
+  1023.773    313.744 0 # matmult_kmn
+  2053.500    315.433 0 # matmult_kmn
+  4095.094    316.884 0 # matmult_kmn
+  8186.273    318.044 0 # matmult_kmn
+ 16380.375    319.054 0 # matmult_kmn
+ 32745.094    319.478 0 # matmult_kmn
+ 65521.500    320.338 0 # matmult_kmn
+131091.211    317.261 624 # matmult_kmn
+262086.000   1653.643 5472 # matmult_kmn
+     1.148    426.158 0 # matmult_knm
+     1.898    692.366 0 # matmult_knm
+     3.961   1086.763 0 # matmult_knm
+     8.461   1367.447 0 # matmult_knm
+    15.844   1476.580 0 # matmult_knm
+    32.086   1554.573 0 # matmult_knm
+    63.375   1543.541 0 # matmult_knm
+   128.344   1550.201 0 # matmult_knm
+   258.398   1363.704 0 # matmult_knm
+   513.375   1116.838 0 # matmult_knm
+  1023.773    825.525 0 # matmult_knm
+  2053.500    519.538 0 # matmult_knm
+  4095.094    504.426 0 # matmult_knm
+  8186.273    504.416 0 # matmult_knm
+ 16380.375    504.004 0 # matmult_knm
+ 32745.094    502.936 0 # matmult_knm
+ 65521.500    478.889 0 # matmult_knm
+131091.211    270.018 624 # matmult_knm
+262086.000    267.756 5472 # matmult_knm
+     1.148    425.663 0 # matmult_mkn
+     1.898    724.204 0 # matmult_mkn
+     3.961   1220.261 0 # matmult_mkn
+     8.461   1701.829 0 # matmult_mkn
+    15.844   1899.765 0 # matmult_mkn
+    32.086   2090.850 0 # matmult_mkn
+    63.375   2206.532 0 # matmult_mkn
+   128.344   2264.615 0 # matmult_mkn
+   258.398   2328.689 0 # matmult_mkn
+   513.375   2308.503 0 # matmult_mkn
+  1023.773   2254.602 0 # matmult_mkn
+  2053.500   2339.120 0 # matmult_mkn
+  4095.094   2349.246 0 # matmult_mkn
+  8186.273   2375.400 0 # matmult_mkn
+ 16380.375   2383.528 0 # matmult_mkn
+ 32745.094   2401.864 0 # matmult_mkn
+ 65521.500   2429.649 0 # matmult_mkn
+131091.211   1930.862 624 # matmult_mkn
+262086.000   1867.858 5472 # matmult_mkn
+     1.148    441.673 0 # matmult_mnk
+     1.898    772.218 0 # matmult_mnk
+     3.961   1292.738 0 # matmult_mnk
+     8.461   1697.472 0 # matmult_mnk
+    15.844   1792.484 0 # matmult_mnk
+    32.086   1785.832 0 # matmult_mnk
+    63.375   1579.034 0 # matmult_mnk
+   128.344   1702.313 0 # matmult_mnk
+   258.398   1588.166 0 # matmult_mnk
+   513.375   1478.306 0 # matmult_mnk
+  1023.773   1302.911 0 # matmult_mnk
+  2053.500   1255.204 0 # matmult_mnk
+  4095.094   1246.144 0 # matmult_mnk
+  8186.273   1089.794 0 # matmult_mnk
+ 16380.375   1151.257 0 # matmult_mnk
+ 32745.094   1162.433 0 # matmult_mnk
+ 65521.500   1167.614 0 # matmult_mnk
+User defined signal 2
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11977092: <mm_batch> in cluster <dcc> Exited
+
+Job <mm_batch> was submitted from host <n-62-27-23> by user <s174450> in cluster <dcc> at Thu Jan  6 14:46:26 2022
+Job was executed on host(s) <n-62-21-75>, in queue <hpcintro>, as user <s174450> in cluster <dcc> at Thu Jan  6 14:46:38 2022
+</zhome/a9/a/127079> was used as the home directory.
+</zhome/a9/a/127079/Assignment1> was used as the working directory.
+Started at Thu Jan  6 14:46:38 2022
+Terminated at Thu Jan  6 15:02:03 2022
+Results reported at Thu Jan  6 15:02:03 2022
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# 02614 - High-Performance Computing, January 2022
+# 
+# batch script to run matmult on a decidated server in the hpcintro
+# queue
+#
+# Author: Bernd Dammann <bd@cc.dtu.dk>
+#
+#BSUB -J mm_batch
+#BSUB -o Nothing_%J.out
+#BSUB -q hpcintro
+#BSUB -n 1
+#BSUB -R "rusage[mem=2048]"
+#BSUB -W 15
+# uncomment the following line, if you want to assure that your job has
+# a whole CPU for itself (shared L3 cache)
+# #BSUB -R "span[hosts=1] affinity[socket(1)]"
+
+# define the driver name to use
+# valid values: matmult_c.studio, matmult_f.studio, matmult_c.gcc or
+# matmult_f.gcc
+#
+EXECUTABLE=matmult_c.gcc
+
+# define the mkn values in the MKN variable
+#
+SIZES="7 9 13 19 26 37 52 74 105 148 209 296 418 591 836 1182 1672 2365 3344"
+
+# define the permutation type in PERM
+#
+PERM="kmn knm mkn mnk nkm nmk lib"
+
+# uncomment and set a reasonable BLKSIZE for the blk version
+#
+# BLKSIZE=1
+
+# enable(1)/disable(0) result checking
+export MATMULT_COMPARE=1
+export MATMULT_RESULTS=0
+# start the collect command with the above settings
+for P in $PERM
+do
+    for S in $SIZES
+    do
+        ./$EXECUTABLE $P $S $S $S $BLKSIZE
+    done
+done
+
+
+
+------------------------------------------------------------
+
+TERM_RUNLIMIT: job killed after reaching LSF run time limit.
+Exited with exit code 140.
+
+Resource usage summary:
+
+    CPU time :                                   923.00 sec.
+    Max Memory :                                 357 MB
+    Average Memory :                             133.50 MB
+    Total Requested Memory :                     2048.00 MB
+    Delta Memory :                               1691.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   924 sec.
+    Turnaround time :                            937 sec.
+
+The output (if any) is above this job summary.
+
