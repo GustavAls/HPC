@@ -36,16 +36,18 @@ def make_plot(input_file
                  [float(output_file[i][1]) for i in idx[key]],
                  color = COLORS[i],
                  label = key)
-        plt.ticklabel_format(axis="both", style="sci", scilimits=(0,0))
+        plt.yscale('log', base=2)
+        plt.xscale('log', base=2)
+    
     plt.axvline(L0, ls = '--')
     plt.axvline(L1, ls = '--')
     plt.axvline(L2, ls = '--')
     plt.xlabel("Mem usage in kbytes")
     plt.ylabel("Mflop/s")
     plt.legend()
-    plt.title("Performance with -O3 -Fun compiler")
-    plt.show()
+    plt.title("Performance with Ofast compiler")
+    plt.savefig('Ofast.png')
 
 
 if __name__ == "__main__":
-    make_plot("O3_Fun_11980527.out")
+    make_plot("O3_11980494.out")
