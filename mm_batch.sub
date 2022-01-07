@@ -7,7 +7,7 @@
 # Author: Bernd Dammann <bd@cc.dtu.dk>
 #
 #BSUB -J mm_batch
-#BSUB -o O3_%J.out
+#BSUB -o OFast_%J.out
 #BSUB -q hpcintro
 #BSUB -n 1
 #BSUB -R "rusage[mem=2048]"

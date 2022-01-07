@@ -1,4 +1,4 @@
-#!/bin/bash
+i#!/bin/bash
 # 02614 - High-Performance Computing, January 2022
 # 
 # batch script to run matmult on a decidated server in the hpcintro
@@ -7,7 +7,7 @@
 # Author: Bernd Dammann <bd@cc.dtu.dk>
 #
 #BSUB -J mm_batch
-#BSUB -o Nothing_%J.out
+#BSUB -o OfastFunBLK_%J.out
 #BSUB -q hpcintro
 #BSUB -n 1
 #BSUB -R "rusage[mem=2048]"
@@ -30,22 +30,19 @@ SIZES="1500"
 
 # define the permutation type in PERM
 #
-PERM="kmn knm mkn mnk nkm nmk lib"
+PERM="blk"
 
 # uncomment and set a reasonable BLKSIZE for the blk version
 #
-BLKSIZE="8 10 15 20 25 30 35 40 50 60 80 100 120 140 160 180 200 220 240 260 280 300 320 340 360 380 400"
+BLKSIZE="8 10 15 20 25 30 35 40 50 100 150 200 250 300 350 400"
 
 # enable(1)/disable(0) result checking
 export MATMULT_COMPARE=0
 export MATMULT_RESULTS=0
 # start the collect command with the above settings
-for P in $PERM
+for B in $BLKSIZE
 do
-    for B in $BLKSIZE
-    do
-        ./$EXECUTABLE $P $SIZES $SIZES $SIZES $BLKSIZE
-    done
+	./$EXECUTABLE $PERM $SIZES $SIZES $SIZES $B
 done
 
 
