@@ -5,7 +5,7 @@ LIBSRCS	= matmult_lib.c matmult_nat.c cblast.h \
 		  matmult_blk.c
 LIBOBJS	= $(LIBSRCS:.c=.o)
 
-OPT	= -g 
+OPT	= -g -O3
 PIC	= -fPIC
 
 CC	= gcc -std=gnu99
