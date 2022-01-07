@@ -22,8 +22,6 @@ def make_plot(input_file
         output_file[i] = re.findall("\d+\.\d+", output_file[i])
 
     # Plot setup
-    AOS_COLOR = "tab:red"
-    SOA_COLOR = "tab:blue"
     COLORS = ["tab:red", "tab:blue", "slategrey", "tab:green", "black", "tab:pink", "tab:purple"]
     L0 = 64.0
     L1 = 256.0
