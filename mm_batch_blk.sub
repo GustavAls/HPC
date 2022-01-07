@@ -1,0 +1,51 @@
+#!/bin/bash
+# 02614 - High-Performance Computing, January 2022
+# 
+# batch script to run matmult on a decidated server in the hpcintro
+# queue
+#
+# Author: Bernd Dammann <bd@cc.dtu.dk>
+#
+#BSUB -J mm_batch
+#BSUB -o Nothing_%J.out
+#BSUB -q hpcintro
+#BSUB -n 1
+#BSUB -R "rusage[mem=2048]"
+#BSUB -W 01:00
+# uncomment the following line, if you want to assure that your job has
+# a whole CPU for itself (shared L3 cache)
+# #BSUB -R "span[hosts=1] affinity[socket(1)]"
+
+module load openblas
+
+# define the driver name to use
+# valid values: matmult_c.studio, matmult_f.studio, matmult_c.gcc or
+# matmult_f.gcc
+#
+EXECUTABLE=matmult_c.gcc
+
+# define the mkn values in the MKN variable
+#
+SIZES="7 9 13 19 26 37 52 74 105 148 209 296 418 591 836 1182 1672 2365 3344"
+
+# define the permutation type in PERM
+#
+PERM="kmn knm mkn mnk nkm nmk lib"
+
+# uncomment and set a reasonable BLKSIZE for the blk version
+#
+BLKSIZE="1 2 3 4 5 8 10 15 20 25 30 35 40 50 60 80 100 120 140 160 180 200 220 240 260 280 300 320 340 360 380 400"
+
+# enable(1)/disable(0) result checking
+export MATMULT_COMPARE=0
+export MATMULT_RESULTS=0
+# start the collect command with the above settings
+for P in $PERM
+do
+    for S in $SIZES
+    do
+        ./$EXECUTABLE $P $S $S $S $BLKSIZE
+    done
+done
+
+
