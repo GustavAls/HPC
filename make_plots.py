@@ -75,13 +75,13 @@ def make_plot(input_file
         # loc="center left",
     )
 
-    ax.vlines(caches[1:], ymin=2**8, ymax=2**13, linestyle="--", color=ALMOST_BLACK)
-    ax.annotate(text="L1 cache", xy=(caches[1], 2**8), color=ALMOST_BLACK, ha="right", rotation="90")
-    ax.annotate(text="L2 cache", xy=(caches[2], 2**8), color=ALMOST_BLACK, ha="right", rotation="90")
-    ax.annotate(text="L3 cache", xy=(caches[3], 2**8), color=ALMOST_BLACK, ha="right", rotation="90")
+    ax.vlines(caches[1:], ymin=0, ymax=10**5, linestyle="--", color=ALMOST_BLACK)
+    ax.annotate(text="L1 cache", xy=(caches[1], 10**4), color=ALMOST_BLACK, ha="right", rotation="90")
+    ax.annotate(text="L2 cache", xy=(caches[2], 10**4), color=ALMOST_BLACK, ha="right", rotation="90")
+    ax.annotate(text="L3 cache", xy=(caches[3], 10**4), color=ALMOST_BLACK, ha="right", rotation="90")
 
     fig.tight_layout()
-    fig.savefig(folder + file_name +'.pdf')
+    fig.savefig(folder + file_name +'.png')
 
 
 if __name__ == "__main__":
