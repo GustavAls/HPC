@@ -60,7 +60,7 @@ def make_plot(input_file
                 color=COLORS[i], 
                 s=10)
     ax.set_yscale('log', base=10)
-    ax.set_xscale('log', base=10)
+    ax.set_xscale('log', base=2)
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     ax.set(
