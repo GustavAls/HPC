@@ -59,8 +59,8 @@ def make_plot(input_file
                 [float(output_file[i][1]) for i in idx[key]], 
                 color=COLORS[i], 
                 s=10)
-    ax.set_yscale('log', base=2)
-    ax.set_xscale('log', base=2)
+    ax.set_yscale('log', base=10)
+    ax.set_xscale('log', base=10)
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     ax.set(
@@ -85,8 +85,9 @@ def make_plot(input_file
 
 
 if __name__ == "__main__":
+    make_plot("./NewRun/OFast_11989103.out", "OFast_11989103.out")
+    make_plot("./NewRun/O3_11989083.out", "O3_11989083.out")
     make_plot("./NewRun/O3Fun_11989099.out", "O3Fun_11989099.out")
-    make_plot("./NewRun/O3_11980494.out", "O3_11980494.out")
-    make_plot("./NewRun/O3Fun_11989099.out", "O3Fun_11989099.out")
-    make_plot("./NewRun/Default_11989114.out", "Default_11989114.out")
-    make_plot("./NewRun/OFastFunroll_11988857.out", "OFastFunroll_11988857.out")
+    make_plot("./NewRun/DefaultBLK_11989114.out", "DefaultBLK_11989114.out")
+    make_plot("./NewRun/OFastFunroll_11989079.out", "OFastFunroll_11989079.out")
+    make_plot("./NewRun/OFastFunrollBLK_11989078.out", "OFastFunrollBLK_11989078.out")
