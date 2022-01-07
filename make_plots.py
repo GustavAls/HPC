@@ -85,9 +85,10 @@ def make_plot(input_file
 
 
 if __name__ == "__main__":
-    make_plot("./NewRun/OFast_11989103.out", "OFast_11989103.out")
-    make_plot("./NewRun/O3_11989083.out", "O3_11989083.out")
-    make_plot("./NewRun/O3Fun_11989099.out", "O3Fun_11989099.out")
-    make_plot("./NewRun/DefaultBLK_11989114.out", "DefaultBLK_11989114.out")
-    make_plot("./NewRun/OFastFunroll_11989079.out", "OFastFunroll_11989079.out")
-    make_plot("./NewRun/OFastFunrollBLK_11989078.out", "OFastFunrollBLK_11989078.out")
+    # make_plot("./NewRun/OFast_11989103.out", "OFast_11989103.out")
+    # make_plot("./NewRun/O3_11989083.out", "O3_11989083.out")
+    # make_plot("./NewRun/O3Fun_11989099.out", "O3Fun_11989099.out")
+    # make_plot("./NewRun/DefaultBLK_11989114.out", "DefaultBLK_11989114.out")
+    # make_plot("./NewRun/OFastFunroll_11989079.out", "OFastFunroll_11989079.out")
+    # make_plot("./NewRun/OFastFunrollBLK_11989078.out", "OFastFunrollBLK_11989078.out")
+    make_plot("./NewRun/Default_11980485.out","Default_11980485.out")
