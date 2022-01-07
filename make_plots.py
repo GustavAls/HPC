@@ -3,8 +3,9 @@ import re
 
 def make_plot(input_file
             #, output_dir
-            ):
+            , file_name: str):
 
+    file_name = file_name.split('_')[0]
     output_file = []
     text = open(input_file, 'rt').read()
     output_file = text.split('\n\n',1)[0]
@@ -22,7 +23,7 @@ def make_plot(input_file
         output_file[i] = re.findall("\d+\.\d+", output_file[i])
 
     # Plot setup
-    COLORS = ["tab:red", "tab:blue", "slategrey", "tab:green", "black", "tab:pink", "tab:purple"]
+    COLORS = ["tab:red", "tab:blue", "slategrey", "tab:green", "black", "tab:pink", "tab:orange"]
     L0 = 64.0
     L1 = 256.0
     L2 = 30720.0
@@ -33,7 +34,9 @@ def make_plot(input_file
         plt.plot([float(output_file[i][0]) for i in idx[key]],
                  [float(output_file[i][1]) for i in idx[key]],
                  color = COLORS[i],
-                 label = key)
+                 label = key,
+                 lw = 3,
+                 marker = "o")
         plt.yscale('log', base=2)
         plt.xscale('log', base=2)
     
@@ -43,9 +46,12 @@ def make_plot(input_file
     plt.xlabel("Mem usage in kbytes")
     plt.ylabel("Mflop/s")
     plt.legend()
-    plt.title("Performance with Ofast compiler")
-    plt.savefig('Ofast.png')
+    plt.title("Performance with " + file_name + " compiler")
+    plt.savefig(file_name +'.png')
 
 
 if __name__ == "__main__":
-    make_plot("O3_11980494.out")
+    make_plot("OFast_11988608.out", "OFast_11988608.out")
+    make_plot("O3_11980494.out", "O3_11980494.out")
+    make_plot("O3Fun_11980527.out", "O3Fun_11980527.out")
+    make_plot("Default_11980485.out", "Default_11980485.out")
