@@ -1,0 +1,216 @@
+Loaded module: openblas/0.2.14
+ 52734.375    316.183 # matmult_kmn
+ 52734.375    316.510 # matmult_kmn
+ 52734.375    316.442 # matmult_kmn
+ 52734.375    315.647 # matmult_kmn
+ 52734.375    315.545 # matmult_kmn
+ 52734.375    316.142 # matmult_kmn
+ 52734.375    316.449 # matmult_kmn
+ 52734.375    316.232 # matmult_kmn
+ 52734.375    316.075 # matmult_kmn
+ 52734.375    315.896 # matmult_kmn
+ 52734.375    316.018 # matmult_kmn
+ 52734.375    315.119 # matmult_kmn
+ 52734.375    315.902 # matmult_kmn
+ 52734.375    315.992 # matmult_kmn
+ 52734.375    316.146 # matmult_kmn
+ 52734.375    316.444 # matmult_kmn
+ 52734.375    316.456 # matmult_kmn
+ 52734.375    316.464 # matmult_kmn
+ 52734.375    148.368 # matmult_knm
+ 52734.375    146.915 # matmult_knm
+ 52734.375    146.926 # matmult_knm
+ 52734.375    149.627 # matmult_knm
+ 52734.375    150.504 # matmult_knm
+ 52734.375    147.223 # matmult_knm
+ 52734.375    149.561 # matmult_knm
+ 52734.375    148.480 # matmult_knm
+ 52734.375    151.097 # matmult_knm
+ 52734.375    145.451 # matmult_knm
+ 52734.375    150.034 # matmult_knm
+ 52734.375    150.423 # matmult_knm
+ 52734.375    163.978 # matmult_knm
+ 52734.375    151.287 # matmult_knm
+ 52734.375    151.056 # matmult_knm
+ 52734.375    150.732 # matmult_knm
+ 52734.375    150.910 # matmult_knm
+ 52734.375    150.574 # matmult_knm
+ 52734.375    318.874 # matmult_mkn
+ 52734.375    318.745 # matmult_mkn
+ 52734.375    318.099 # matmult_mkn
+ 52734.375    318.007 # matmult_mkn
+ 52734.375    317.474 # matmult_mkn
+ 52734.375    317.665 # matmult_mkn
+ 52734.375    316.855 # matmult_mkn
+ 52734.375    317.296 # matmult_mkn
+ 52734.375    317.274 # matmult_mkn
+ 52734.375    317.828 # matmult_mkn
+ 52734.375    317.757 # matmult_mkn
+ 52734.375    317.843 # matmult_mkn
+ 52734.375    317.127 # matmult_mkn
+ 52734.375    317.803 # matmult_mkn
+ 52734.375    317.709 # matmult_mkn
+ 52734.375    317.499 # matmult_mkn
+ 52734.375    317.634 # matmult_mkn
+ 52734.375    317.770 # matmult_mkn
+ 52734.375    163.815 # matmult_mnk
+ 52734.375    162.455 # matmult_mnk
+ 52734.375    163.970 # matmult_mnk
+ 52734.375    167.761 # matmult_mnk
+ 52734.375    184.594 # matmult_mnk
+ 52734.375    169.196 # matmult_mnk
+ 52734.375    163.555 # matmult_mnk
+ 52734.375    162.062 # matmult_mnk
+ 52734.375    163.769 # matmult_mnk
+ 52734.375    162.299 # matmult_mnk
+ 52734.375    163.821 # matmult_mnk
+ 52734.375    162.726 # matmult_mnk
+ 52734.375    162.687 # matmult_mnk
+ 52734.375    162.628 # matmult_mnk
+ 52734.375    162.380 # matmult_mnk
+ 52734.375    162.381 # matmult_mnk
+ 52734.375    162.481 # matmult_mnk
+ 52734.375    162.498 # matmult_mnk
+ 52734.375    149.744 # matmult_nkm
+ 52734.375    149.928 # matmult_nkm
+ 52734.375    151.506 # matmult_nkm
+ 52734.375    149.547 # matmult_nkm
+ 52734.375    150.625 # matmult_nkm
+ 52734.375    154.408 # matmult_nkm
+ 52734.375    156.042 # matmult_nkm
+ 52734.375    157.480 # matmult_nkm
+ 52734.375    150.729 # matmult_nkm
+ 52734.375    148.026 # matmult_nkm
+ 52734.375    151.444 # matmult_nkm
+ 52734.375    154.911 # matmult_nkm
+ 52734.375    158.641 # matmult_nkm
+ 52734.375    158.102 # matmult_nkm
+ 52734.375    158.147 # matmult_nkm
+ 52734.375    156.015 # matmult_nkm
+ 52734.375    155.676 # matmult_nkm
+ 52734.375    154.259 # matmult_nkm
+ 52734.375    275.645 # matmult_nmk
+ 52734.375    280.240 # matmult_nmk
+ 52734.375    280.799 # matmult_nmk
+ 52734.375    282.439 # matmult_nmk
+ 52734.375    284.253 # matmult_nmk
+ 52734.375    283.785 # matmult_nmk
+ 52734.375    282.690 # matmult_nmk
+ 52734.375    280.627 # matmult_nmk
+ 52734.375    284.094 # matmult_nmk
+ 52734.375    283.590 # matmult_nmk
+ 52734.375    284.238 # matmult_nmk
+ 52734.375    284.442 # matmult_nmk
+ 52734.375    283.752 # matmult_nmk
+ 52734.375    284.582 # matmult_nmk
+ 52734.375    283.845 # matmult_nmk
+ 52734.375    283.361 # matmult_nmk
+ 52734.375    281.189 # matmult_nmk
+ 52734.375    279.447 # matmult_nmk
+ 52734.375   8476.186 # matmult_lib
+ 52734.375   8476.652 # matmult_lib
+ 52734.375   8475.515 # matmult_lib
+ 52734.375   8476.239 # matmult_lib
+ 52734.375   8476.111 # matmult_lib
+ 52734.375   8475.877 # matmult_lib
+ 52734.375   8474.592 # matmult_lib
+ 52734.375   8469.424 # matmult_lib
+ 52734.375   8474.797 # matmult_lib
+ 52734.375   8477.996 # matmult_lib
+ 52734.375   8475.135 # matmult_lib
+ 52734.375   8472.523 # matmult_lib
+ 52734.375   8475.494 # matmult_lib
+ 52734.375   8475.233 # matmult_lib
+ 52734.375   8472.095 # matmult_lib
+ 52734.375   8474.236 # matmult_lib
+ 52734.375   8474.510 # matmult_lib
+ 52734.375   8466.912 # matmult_lib
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 11989114: <mm_batch> in cluster <dcc> Exited
+
+Job <mm_batch> was submitted from host <n-62-30-2> by user <s174450> in cluster <dcc> at Fri Jan  7 12:16:26 2022
+Job was executed on host(s) <n-62-21-77>, in queue <hpcintro>, as user <s174450> in cluster <dcc> at Fri Jan  7 12:16:28 2022
+</zhome/a9/a/127079> was used as the home directory.
+</zhome/a9/a/127079/Assignment1> was used as the working directory.
+Started at Fri Jan  7 12:16:28 2022
+Terminated at Fri Jan  7 13:16:30 2022
+Results reported at Fri Jan  7 13:16:30 2022
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# 02614 - High-Performance Computing, January 2022
+# 
+# batch script to run matmult on a decidated server in the hpcintro
+# queue
+#
+# Author: Bernd Dammann <bd@cc.dtu.dk>
+#
+#BSUB -J mm_batch
+#BSUB -o Default_%J.out
+#BSUB -q hpcintro
+#BSUB -n 1
+#BSUB -R "rusage[mem=2048]"
+#BSUB -W 01:00
+# uncomment the following line, if you want to assure that your job has
+# a whole CPU for itself (shared L3 cache)
+# #BSUB -R "span[hosts=1] affinity[socket(1)]"
+
+module load openblas
+
+# define the driver name to use
+# valid values: matmult_c.studio, matmult_f.studio, matmult_c.gcc or
+# matmult_f.gcc
+#
+EXECUTABLE=matmult_c.gcc
+
+# define the mkn values in the MKN variable
+#
+SIZES="1500"
+
+# define the permutation type in PERM
+#
+PERM="kmn knm mkn mnk nkm nmk lib"
+
+# uncomment and set a reasonable BLKSIZE for the blk version
+#
+BLKSIZE="8 10 15 20 25 30 50 80 100 130 160 200 230 260 300 340 380 400"
+
+# enable(1)/disable(0) result checking
+export MATMULT_COMPARE=0
+export MATMULT_RESULTS=0
+# start the collect command with the above settings
+for P in $PERM
+do
+    for B in $BLKSIZE
+    do
+        ./$EXECUTABLE $P $SIZES $SIZES $SIZES $B
+    done
+done
+
+
+(... more ...)
+------------------------------------------------------------
+
+TERM_RUNLIMIT: job killed after reaching LSF run time limit.
+Exited with signal termination: 19.
+
+Resource usage summary:
+
+    CPU time :                                   3599.38 sec.
+    Max Memory :                                 61 MB
+    Average Memory :                             56.52 MB
+    Total Requested Memory :                     2048.00 MB
+    Delta Memory :                               1987.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   3602 sec.
+    Turnaround time :                            3604 sec.
+
+The output (if any) is above this job summary.
+
