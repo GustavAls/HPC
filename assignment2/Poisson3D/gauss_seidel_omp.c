@@ -7,19 +7,18 @@
 
 int
 gauss_seidel(double ***u,double ***F,int N, int iterations, double tolerance) {
-    int n;
+    int n = 0;
     double delta = 2.0/((double)N-1.0);
     double delta2 = delta*delta;
     double old_u;
     double dist;
     dist = tolerance + 1.0;
-    n = 0;
-    #pragma omp parallel
+    #pragma omp parallel private(n)
     {
-    for (int n = 0; n < iterations; n++){
+    for (n = 0; n < iterations; n++){
         dist = 0;
         //Default schedule would be (static, N/P), with N work and P threads
-        #pragma omp for ordered schedule(static, 1) private(i, j, k)
+        #pragma omp for ordered schedule(static, 1)
         for(int i = 1; i < (N - 1); i++){
             for(int j = 1; j < (N - 1); j++){
             #pragma omp ordered \
