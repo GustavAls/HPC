@@ -46,8 +46,9 @@ main(int argc, char *argv[]) {
     char	*output_prefix = "poisson_res";
     char        *output_ext    = "";
     char	output_filename[FILENAME_MAX];
-    double 	***u = NULL;
-    double 	***F = NULL;
+    double 	***u    = NULL;
+    double 	***F    = NULL;
+    double 	***u_old= NULL;
 
 
     /* get the paramters from the command line */
@@ -72,26 +73,26 @@ main(int argc, char *argv[]) {
     // This is hideous, maybe should put it in a separate file? Idk
     for(int i=0;i<(N);i++){
         for(int k=0;k<(N);k++){
-            // u_old[i][0][k] = 0;
+            u_old[i][0][k] = 0;
             u[i][0][k] = 0;
 
-            // u_old[i][N-1][k] = 20;
+            u_old[i][N-1][k] = 20;
             u[i][N-1][k] = 20;
         }
         for(int j=0; j<N; j++){
-            // u_old[i][j][0] = 20;
+            u_old[i][j][0] = 20;
             u[i][j][0] = 20;
 
-            // u_old[i][j][N-1] = 20;
+            u_old[i][j][N-1] = 20;
             u[i][j][N-1] = 20;
         }
     }
     for(int j=0; j<N; j++){
         for(int k=0; k<N; k++){
-            // u_old[0][j][k] = 20;
+            u_old[0][j][k] = 20;
             u[0][j][k] = 20;
 
-            // u_old[N-1][j][k] = 20;
+            u_old[N-1][j][k] = 20;
             u[N-1][j][k] = 20;
         }
     }
@@ -99,9 +100,9 @@ main(int argc, char *argv[]) {
     for(int i=1;i<(N-1);i++){
         for(int j=1;j<(N-1);j++){
             for(int k=1;k<(N-1);k++){
-                // u_old[i][j][k] = start_T;
+                u_old[i][j][k] = start_T;
                 u[i][j][k] = start_T;
-                F[i][j][k] = calculate_f(i,j,k,N);
+                F[i][j][k] = calculate_f(N, i , j, k);
             }
         }
     }
@@ -113,6 +114,12 @@ main(int argc, char *argv[]) {
     iter = gauss_seidel(u, F, N, iter_max, tolerance);
     elapsed = omp_get_wtime() - start;
     #endif
+    #ifdef _JACOBI
+    start = omp_get_wtime();
+    iter = jacobi(u_old, u, F, N, iter_max, tolerance);
+    elapsed = omp_get_wtime() - start;
+    #endif
+
 
     // FILE *file = fopen("result.txt", "w");
     // fprintf(file, "%f %d", elapsed, iter);

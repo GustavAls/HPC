@@ -6,14 +6,17 @@
 #BSUB -R "rusage[mem=2048MB] span[hosts=1]"
 ## set number of cores
 #BSUB -n 24
-OUTFILE=Jacobi.${LSB_JOBID}.txt
+DIRECTORY=experiments
+OUTFILE=$DIRECTORY/jacobi.txt
 #BSUB -o $OUTFILE
 module load studio
 
 echo "CPU information"
 lscpu
 
+rm -rf $OUTFILE
+
 for N in 16 32 64 128 256 512 1024
 do
-	./jacobi $N 1000000 0.001 >> $OUTFILE
+	./poisson_j $N 1000000 0.001 1 >> $OUTFILE
 done
