@@ -12,11 +12,11 @@ OBJS_GS	= $(MAIN_GS) gauss_seidel.o
 
 # options and settings for the GCC compilers
 #
-CC	= gcc
+CC	    = gcc
 DEFS	= 
-OPT	= -g 
-IPO	= 
-ISA	= 
+OPT    	= -g -std=c99 -fopenmp
+IPO		= 
+ISA		= 
 CHIP	= 
 ARCH	= 
 PARA	= 
@@ -45,6 +45,6 @@ realclean: clean
 
 # DO NOT DELETE
 
-main_j.o: main.c print.h jacobi.h 
+main_j.o: main.c print.h jacobi.h
 main_gs.o: main.c print.h gauss_seidel.h
 print.o: print.h

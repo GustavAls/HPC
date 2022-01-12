@@ -1,8 +1,5 @@
-alloc3d.o
-gauss_seidel.o
-jacobi.o
-main_gs.o
-main_j.o
+.vscode/
+experiments/
+*.o
 poisson_gs
 poisson_j
-print.o
