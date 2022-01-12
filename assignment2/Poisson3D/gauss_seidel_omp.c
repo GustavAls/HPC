@@ -22,7 +22,9 @@ gauss_seidel(double ***u,double ***F,int N, int iterations, double tolerance) {
         #pragma omp for ordered(2) schedule(static, 1)
         for(int i = 1; i < (N - 1); i++){
             for(int j = 1; j < (N - 1); j++){
-                #pragma omp ordered depend(sink: i - 1, j) depend(sink: i, j - 1)
+            #pragma omp ordered \
+                    depend(sink:i-1, j) \
+                    depend(sink:i, j-1)
                 for(int k = 1; k < (N - 1); k++){
                     old_u = u[i][j][k];
                     u[i][j][k] = 1.0 / 6.0*(
@@ -33,8 +35,7 @@ gauss_seidel(double ***u,double ***F,int N, int iterations, double tolerance) {
                     );
                     dist += (u[i][j][k] - old_u)*(u[i][j][k] - old_u);
                 }
-                #pragma omp ordered depend(source)
-                /*Ending ordered*/
+            #pragma omp ordered depend(source) /*Ending ordered*/
             }
         }/*End of for ordered*/
         dist = sqrt(dist);
