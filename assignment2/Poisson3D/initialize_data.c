@@ -32,7 +32,7 @@ void initialize_data(int N, double ***u, double ***u_old, double ***F, double st
             for(int k=1;k<(N-1);k++){
                 u_old[i][j][k] = start_T;
                 u[i][j][k] = start_T;
-                F[i][j][k] = calculate_f(N, i , j, k);
+                F[i][j][k] = calculate_f(N, i, j, k);
             }
         }
     }
