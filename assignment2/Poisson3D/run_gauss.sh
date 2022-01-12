@@ -2,7 +2,7 @@
 #BSUB -J Gauss
 #BSUB -q hpcintro
 ## set wall time hh:mm
-#BSUB -W 00:40
+#BSUB -W 01:00
 #BSUB -R "rusage[mem=2048MB] span[hosts=1]"
 ## set number of cores
 #BSUB -n 24
