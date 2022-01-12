@@ -65,6 +65,10 @@ main(int argc, char *argv[]) {
         perror("array u: allocation failed");
         exit(-1);
     }
+    if ( (u_old = d_malloc_3d(N, N, N)) == NULL ) {
+        perror("array u: allocation failed");
+        exit(-1);
+    }
     if ( (F = d_malloc_3d(N, N, N)) == NULL ) {
         perror("array F: allocation failed");
         exit(-1);
