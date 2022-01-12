@@ -13,7 +13,6 @@ START_AT=1
  
 COLLECT="-p on -h dch -h dcm -h l2h -h l2m"
 
-mkdir $DIRECTORY
 rm -f $OUTFILE
  
 # enable(1)/disable(0) result checking

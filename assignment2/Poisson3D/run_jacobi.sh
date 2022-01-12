@@ -20,7 +20,6 @@ START_AT=1
 echo "CPU information"
 lscpu
 
-mkdir $DIRECTORY
 rm -rf $OUTFILE
 
 for N in $NS
