@@ -12,11 +12,11 @@
 #include "jacobi.h"
 #endif
 
-#ifdef _GAUSS_SEIDEL
+/*#ifdef _GAUSS_SEIDEL
 #include "gauss_seidel.h"
-#endif
+#endif*/
 
-#ifdef _GAUSS_SEIDEL_OMP_H
+#ifdef _GAUSS_SEIDEL
 #include "gauss_seidel_omp.h"
 #endif
 
