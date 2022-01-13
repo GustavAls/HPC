@@ -67,24 +67,17 @@ main(int argc, char *argv[]) {
     int iter;
     #ifdef _GAUSS_SEIDEL
     start = omp_get_wtime();
+    // iter = gauss_seidel(u, F, N, iter_max, tolerance);
     iter = gauss_seidel_omp(u, F, N, iter_max, tolerance);
-    elapsed = omp_get_wtime() - start;
-    #endif
-    // #ifdef _JACOBI
-    // start = omp_get_wtime();
-    // iter = jacobi_reduction(u_old, u, F, N, iter_max, tolerance);
-    // elapsed = omp_get_wtime() - start;
-    // #endif
-    /*#ifdef _GAUSS_SEIDEL
-    start = omp_get_wtime();
-    iter = gauss_seidel(u, F, N, iter_max, tolerance);
     elapsed = omp_get_wtime() - start;
     #endif
     #ifdef _JACOBI
     start = omp_get_wtime();
-    iter = jacobi(u_old, u, F, N, iter_max, tolerance);
+    // iter = jacobi(u_old, u, F, N, iter_max, tolerance);
+    // iter = jacobi_reduce(u_old, u, F, N, iter_max, tolerance);
+    iter = jacobi_collapse(u_old, u, F, N, iter_max, tolerance);
     elapsed = omp_get_wtime() - start;
-    #endif*/
+    #endif
 
 
     // FILE *file = fopen("result.txt", "w");

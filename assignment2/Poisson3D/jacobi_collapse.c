@@ -17,7 +17,6 @@ jacobi_collapse(double ***u_old,double ***u,double ***F, int N, int iterations, 
     n = 0;
     while(dist > tolerance && n < iterations){
         dist = 0;
-        // #pragma omp parallel for collapse(3) reduction(+: dist)
         #pragma omp parallel for collapse(3) reduction(+: dist) default(none) private(n) shared(delta2, u_old, u, N, tolerance, F, iterations)
         for(int i = 1; i < (N - 1); i++){
             for(int j = 1; j < (N - 1); j++){
