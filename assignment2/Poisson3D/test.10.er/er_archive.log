@@ -1,0 +1,11 @@
+### Start Thu Jan 13 16:11:28 2022
+# /opt/oracle/developerstudio12.6/bin/../bin/er_archive -n -O /zhome/14/5/127713/Documents/HPC/assignment2/Poisson3D/test.10.er/er_archive.log /zhome/14/5/127713/Documents/HPC/assignment2/Poisson3D/test.10.er
+Copying `/zhome/14/5/127713/Documents/HPC/assignment2/Poisson3D/poisson_j'  to `/zhome/14/5/127713/Documents/HPC/assignment2/Poisson3D/test.10.er/archives/poisson_j_tp6aIi3ZpD2'
+Copying `/usr/lib64/librt-2.17.so'  to `/zhome/14/5/127713/Documents/HPC/assignment2/Poisson3D/test.10.er/archives/librt-2.17.so_OCEC1bthLm2'
+Copying `/usr/lib64/libdl-2.17.so'  to `/zhome/14/5/127713/Documents/HPC/assignment2/Poisson3D/test.10.er/archives/libdl-2.17.so_OCEC1bthLm2'
+Copying `/usr/lib64/libc-2.17.so'  to `/zhome/14/5/127713/Documents/HPC/assignment2/Poisson3D/test.10.er/archives/libc-2.17.so_OCEC1bthLm2'
+Copying `/usr/lib64/libpthread-2.17.so'  to `/zhome/14/5/127713/Documents/HPC/assignment2/Poisson3D/test.10.er/archives/libpthread-2.17.so_OCEC1bthLm2'
+Copying `/appl/gcc/6.3.0/lib64/libgomp.so.1.0.0'  to `/zhome/14/5/127713/Documents/HPC/assignment2/Poisson3D/test.10.er/archives/libgomp.so.1.0.0_vjp4ueVdCr5'
+Copying `/usr/lib64/libm-2.17.so'  to `/zhome/14/5/127713/Documents/HPC/assignment2/Poisson3D/test.10.er/archives/libm-2.17.so_OCEC1bthLm2'
+Copying `/opt/oracle/developerstudio12.6/lib/analyzer/amd64/runtime/libcollector.so'  to `/zhome/14/5/127713/Documents/HPC/assignment2/Poisson3D/test.10.er/archives/libcollector.so_-C8vWEvanQd'
+Copying `/usr/lib64/ld-2.17.so'  to `/zhome/14/5/127713/Documents/HPC/assignment2/Poisson3D/test.10.er/archives/ld-2.17.so_OCEC1bthLm2'
