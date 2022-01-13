@@ -16,6 +16,11 @@
 #include "gauss_seidel.h"
 #endif
 
+#ifdef _GAUSS_SEIDEL_OMP_H
+#include "gauss_seidel_omp.h"
+#endif
+
+
 #define N_DEFAULT 100
 
 int
@@ -61,7 +66,12 @@ main(int argc, char *argv[]) {
 
     double start, elapsed;
     int iter;
-    #ifdef _GAUSS_SEIDEL
+    #ifdef _GAUSS_SEIDEL_OMP_H
+    start = omp_get_wtime();
+    iter = gauss_seidel(u, F, N, iter_max, tolerance);
+    elapsed = omp_get_wtime() - start;
+    #endif
+    /*#ifdef _GAUSS_SEIDEL
     start = omp_get_wtime();
     iter = gauss_seidel(u, F, N, iter_max, tolerance);
     elapsed = omp_get_wtime() - start;
@@ -70,7 +80,7 @@ main(int argc, char *argv[]) {
     start = omp_get_wtime();
     iter = jacobi(u_old, u, F, N, iter_max, tolerance);
     elapsed = omp_get_wtime() - start;
-    #endif
+    #endif*/
 
 
     // FILE *file = fopen("result.txt", "w");
