@@ -12,6 +12,7 @@
 #include "jacobi.h"
 #include "jacobi_reduce.h"
 #include "jacobi_collapse.h"
+#include "jacobi_barrier.h"
 #endif
 
 #ifdef _GAUSS_SEIDEL
@@ -75,7 +76,8 @@ main(int argc, char *argv[]) {
     start = omp_get_wtime();
     // iter = jacobi(u_old, u, F, N, iter_max, tolerance);
     // iter = jacobi_reduce(u_old, u, F, N, iter_max, tolerance);
-    iter = jacobi_collapse(u_old, u, F, N, iter_max, tolerance);
+    // iter = jacobi_collapse(u_old, u, F, N, iter_max, tolerance);
+    iter = jacobi_barrier(u_old, u, F, N, iter_max, tolerance);
     elapsed = omp_get_wtime() - start;
     #endif
 

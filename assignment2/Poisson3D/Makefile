@@ -7,7 +7,7 @@ SOURCES	= main.c print.c alloc3d.c
 OBJECTS	= print.o alloc3d.o initialize_data.o calculate_f.o
 MAIN_J	= main_j.o
 MAIN_GS = main_gs.o
-OBJS_J	= $(MAIN_J) jacobi.o jacobi_reduce.o jacobi_collapse.o
+OBJS_J	= $(MAIN_J) jacobi.o jacobi_reduce.o jacobi_collapse.o jacobi_barrier.o
 OBJS_GS	= $(MAIN_GS) gauss_seidel.o gauss_seidel_omp.o
 
 # options and settings for the GCC compilers
@@ -45,7 +45,7 @@ realclean: clean
 
 # DO NOT DELETE
 
-main_j.o: main.c print.h jacobi.h jacobi_reduce.h jacobi_collapse.h
+main_j.o: main.c print.h jacobi.h jacobi_reduce.h jacobi_collapse.h jacobi_barrier.h
 main_gs.o: main.c print.h gauss_seidel.h gauss_seidel_omp.h
 print.o: print.h
 initialize_data.o: initialize_data.h calculate_f.h
