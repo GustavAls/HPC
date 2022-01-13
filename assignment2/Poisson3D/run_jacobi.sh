@@ -2,30 +2,32 @@
 #BSUB -J Jacobi
 #BUSB -q hpcintro
 ## set wall time hh:mm
-#BSUB -W 02:00
+#BSUB -W 00:40
 #BSUB -R "rusage[mem=2048MB] span[hosts=1]"
 ## set number of cores
 #BSUB -n 24
 EXECUTABLE=poisson_j
 DIRECTORY=experiments
-OUTFILE=$DIRECTORY/jacobi.txt
-#BSUB -o $OUTFILE%J.out
+# OUTFILE=$DIRECTORY/jacobi_1.txt
+#BSUB -o $OUTFILE
 module load studio
 module load gcc
 
-NS="4 8 16 32 64 128 256 512 1024"
+NS="8 16 32 64 128"
 ITER=10000
 THRESH=0.01
 START_AT=1
 
-echo "CPU information"
-lscpu
-echo "GCC version"
-gcc --version
+N_THREADS="1 2 4 16 24"
 
-rm -rf $OUTFILE
+# echo "CPU information"
+# lscpu
 
-for N in $NS
+for M in $N_THREADS
 do
-	$EXECUTABLE $N $ITER $THRESH $START_AT >> $OUTFILE
-done
+	rm -rf $DIRECTORY/jacobi_$M.txt
+	for N in $NS
+	do
+		OMP_NUM_THREADS=$M $EXECUTABLE $N $ITER $THRESH $START_AT >> $DIRECTORY/jacobi_$M.txt
+	done
+done 
