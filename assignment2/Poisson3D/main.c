@@ -6,6 +6,7 @@
 #include <omp.h>
 #include "alloc3d.h"
 #include "print.h"
+#include "initialize_data.h"
 
 #ifdef _JACOBI
 #include "jacobi.h"
@@ -16,24 +17,6 @@
 #endif
 
 #define N_DEFAULT 100
-
-double calculate_f(int N, int i, int j, int k){
-    double delta = 2.0/((double)N-1.0);
-    double x = delta*i - 1.0;
-    double y = delta*j - 1.0;
-    double z = delta*k - 1.0;
-
-    if( -1.0<=x && x<=-3.0/8.0 ){
-        if( -1.0<=y && y<=-1.0/2.0){
-            if( -2.0/3.0<=z && z<=0.0){
-                return(200.0);
-            }
-        }
-    }
-    else{
-    return(0.0);
-    }
-}
 
 int
 main(int argc, char *argv[]) {
@@ -74,42 +57,7 @@ main(int argc, char *argv[]) {
         exit(-1);
     }
 
-    // This is hideous, maybe should put it in a separate file? Idk
-    for(int i=0;i<(N);i++){
-        for(int k=0;k<(N);k++){
-            u_old[i][0][k] = 0;
-            u[i][0][k] = 0;
-
-            u_old[i][N-1][k] = 20;
-            u[i][N-1][k] = 20;
-        }
-        for(int j=0; j<N; j++){
-            u_old[i][j][0] = 20;
-            u[i][j][0] = 20;
-
-            u_old[i][j][N-1] = 20;
-            u[i][j][N-1] = 20;
-        }
-    }
-    for(int j=0; j<N; j++){
-        for(int k=0; k<N; k++){
-            u_old[0][j][k] = 20;
-            u[0][j][k] = 20;
-
-            u_old[N-1][j][k] = 20;
-            u[N-1][j][k] = 20;
-        }
-    }
-    //Interior points
-    for(int i=1;i<(N-1);i++){
-        for(int j=1;j<(N-1);j++){
-            for(int k=1;k<(N-1);k++){
-                u_old[i][j][k] = start_T;
-                u[i][j][k] = start_T;
-                F[i][j][k] = calculate_f(N, i , j, k);
-            }
-        }
-    }
+    initialize_data(N, u, u_old, F, start_T);
 
     double start, elapsed;
     int iter;
@@ -153,6 +101,8 @@ main(int argc, char *argv[]) {
 
     // de-allocate memory
     free(u);
+    free(F);
+    free(u_old);
 
     return(0);
 }
