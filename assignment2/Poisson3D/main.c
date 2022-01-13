@@ -68,7 +68,7 @@ main(int argc, char *argv[]) {
     #ifdef _GAUSS_SEIDEL
     start = omp_get_wtime();
     // iter = gauss_seidel(u, F, N, iter_max, tolerance);
-    iter = gauss_seidel_omp(u, F, N, iter_max, tolerance, start_T, u_old);
+    iter = gauss_seidel_omp(u, F, N, iter_max, tolerance);
     elapsed = omp_get_wtime() - start;
     #endif
     #ifdef _JACOBI

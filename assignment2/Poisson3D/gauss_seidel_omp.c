@@ -7,27 +7,16 @@
 #include <omp.h>
 
 int
-gauss_seidel_omp(double ***u,double ***F,int N, int iterations, double tolerance, double start_T, double ***u_old) {
+gauss_seidel_omp(double ***u,double ***F,int N, int iterations, double tolerance) {
     int n = 0;
     int i, j, k;
     double delta = 2.0/((double)N-1.0);
     double delta2 = delta*delta;
     double div = 1.0/6.0;
+    
     #pragma omp parallel default(none) private(n) \
          shared(delta2, u, u_old, start_T, N, tolerance, F, iterations, div)
     {
-    #pragma omp for private(i,j,k) schedule(static,1)
-    for(i=1;i<(N-1);i++){
-        for(j=1;j<(N-1);j++){
-            for(k=1;k<(N-1);k++){
-                u_old[i][j][k] = start_T;
-                u[i][j][k] = start_T;
-                F[i][j][k] = calculate_f(N, i, j, k);
-            }
-        }
-    }
-
-    
     for (n = 0; n < iterations; n++){
         //Default schedule would be (static, N/P), with N work and P threads
         #pragma omp for private(i,j,k) ordered(2) schedule(static,1)
