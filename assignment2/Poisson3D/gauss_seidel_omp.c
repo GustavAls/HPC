@@ -6,15 +6,16 @@
 #include <omp.h>
 
 int
-gauss_seidel(double ***u,double ***F,int N, int iterations, double tolerance) {
+gauss_seidel_omp(double ***u,double ***F,int N, int iterations, double tolerance) {
     int n = 0;
     double delta = 2.0/((double)N-1.0);
     double delta2 = delta*delta;
     double old_u;
     double dist;
+    double div = 1.0/6.0;
     dist = tolerance + 1.0;
     #pragma omp parallel default(none) private(n) \
-         shared(delta2, dist, old_u, u, N, tolerance, F, iterations)
+         shared(delta2, dist, old_u, u, N, tolerance, F, iterations, div)
     {
     for (n = 0; n < iterations; n++){
         dist = 0;
@@ -25,7 +26,7 @@ gauss_seidel(double ***u,double ***F,int N, int iterations, double tolerance) {
                 #pragma omp ordered depend(sink:i-1, j) depend(sink:i, j-1)
                 for(int k = 1; k < (N - 1); k++){
                     old_u = u[i][j][k];
-                    u[i][j][k] = 1.0 / 6.0*(
+                    u[i][j][k] = div * (
                         u[i-1][j][k] + u[i+1][j][k] + 
                         u[i][j-1][k] + u[i][j+1][k] + 
                         u[i][j][k-1] + u[i][j][k+1] + 
