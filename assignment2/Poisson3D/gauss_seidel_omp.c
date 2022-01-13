@@ -16,7 +16,7 @@ gauss_seidel_omp(double ***u,double ***F,int N, int iterations, double tolerance
     #pragma omp parallel default(none) private(n) \
          shared(delta2, u, u_old, start_T, N, tolerance, F, iterations, div)
     {
-    #pragma omp for private(i,j,k)
+    #pragma omp for private(i,j,k) schedule(static,1)
     for(i=1;i<(N-1);i++){
         for(j=1;j<(N-1);j++){
             for(k=1;k<(N-1);k++){
