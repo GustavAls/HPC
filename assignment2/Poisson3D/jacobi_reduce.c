@@ -14,6 +14,7 @@ jacobi_reduce(double ***u_old,double ***u,double ***F, int N, int iterations, do
     dist = tolerance + 1.0;
     n = 0;
     #pragma omp parallel default(none) private(n) shared(delta2, u_old, u, N, tolerance, F, iterations, dist)
+    {
     while(dist > tolerance && n < iterations){
         dist = 0;
         #pragma omp for reduction(+: dist)
@@ -41,6 +42,7 @@ jacobi_reduce(double ***u_old,double ***u,double ***F, int N, int iterations, do
             }
         }
         n++;
+    }
     }
     return(n);
 }
