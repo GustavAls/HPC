@@ -12,7 +12,6 @@
 #include "jacobi.h"
 #include "jacobi_reduce.h"
 #include "jacobi_collapse.h"
-#include "jacobi_barrier.h"
 #endif
 
 #ifdef _GAUSS_SEIDEL
@@ -61,26 +60,22 @@ main(int argc, char *argv[]) {
         perror("array F: allocation failed");
         exit(-1);
     }
-    
+
+    initialize_data(N, u, u_old, F, start_T);
+
     double start, elapsed;
     int iter;
-    #pragma omp parallel
-    {
-    initialize_data(N, u, u_old, F, start_T);
     #ifdef _GAUSS_SEIDEL
     start = omp_get_wtime();
     // iter = gauss_seidel(u, F, N, iter_max, tolerance);
-    iter = gauss_seidel_omp(u, F, N, iter_max, tolerance);
+    iter = gauss_seidel_omp(u, F, N, iter_max, tolerance, start_T, u_old);
     elapsed = omp_get_wtime() - start;
     #endif
-    }
-    
     #ifdef _JACOBI
     start = omp_get_wtime();
     // iter = jacobi(u_old, u, F, N, iter_max, tolerance);
     // iter = jacobi_reduce(u_old, u, F, N, iter_max, tolerance);
-    // iter = jacobi_collapse(u_old, u, F, N, iter_max, tolerance);
-    iter = jacobi_barrier(u_old, u, F, N, iter_max, tolerance);
+    //iter = jacobi_collapse(u_old, u, F, N, iter_max, tolerance);
     elapsed = omp_get_wtime() - start;
     #endif
 

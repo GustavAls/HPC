@@ -28,8 +28,7 @@ void initialize_data(int N, double ***u, double ***u_old, double ***F, double st
         }
     }
     // Inner
-    #pragma omp for
-    for(int i=1;i<(N-1);i++){
+    /*for(int i=1;i<(N-1);i++){
         for(int j=1;j<(N-1);j++){
             for(int k=1;k<(N-1);k++){
                 u_old[i][j][k] = start_T;
@@ -37,5 +36,5 @@ void initialize_data(int N, double ***u, double ***u_old, double ***F, double st
                 F[i][j][k] = calculate_f(N, i, j, k);
             }
         }
-    }
+    }*/
 }
