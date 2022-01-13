@@ -17,7 +17,7 @@ gauss_seidel_omp(double ***u,double ***F,int N, int iterations, double tolerance
     {
     for (n = 0; n < iterations; n++){
         //Default schedule would be (static, N/P), with N work and P threads
-        #pragma omp for private(i,j,k) ordered(2) schedule(dynamic)//schedule(static,1)
+        #pragma omp for private(i,j,k) ordered(2) schedule(static,1)
         for(i = 1; i < (N - 1); i++){
             for(j = 1; j < (N - 1); j++){
                 #pragma omp ordered depend(sink:i-1,j) depend(sink:i,j-1)
