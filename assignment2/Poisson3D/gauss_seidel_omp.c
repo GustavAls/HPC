@@ -13,7 +13,7 @@ gauss_seidel(double ***u,double ***F,int N, int iterations, double tolerance) {
     double old_u;
     double dist;
     dist = tolerance + 1.0;
-    #pragma omp parallel default(shared) private(n)
+    #pragma omp parallel default(none) private(n) shared(delta2, dist, old_u, u, N, tolerance, F)
     {
     for (n = 0; n < iterations; n++){
         dist = 0;
@@ -32,7 +32,7 @@ gauss_seidel(double ***u,double ***F,int N, int iterations, double tolerance) {
                     );
                     dist += (u[i][j][k] - old_u)*(u[i][j][k] - old_u);
                 }
-            #pragma omp ordered depend(source) /*Ending ordered*/
+                #pragma omp ordered depend(source) /*Ending ordered*/
             }
         }/*End of for ordered*/
         dist = sqrt(dist);
