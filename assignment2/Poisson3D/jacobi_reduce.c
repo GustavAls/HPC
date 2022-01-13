@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 int
-jacobi_reduction(double ***u_old,double ***u,double ***F, int N, int iterations, double tolerance) {
+jacobi_reduce(double ***u_old,double ***u,double ***F, int N, int iterations, double tolerance) {
     int n;
     double delta = 2.0/((double)N-1.0);
     double delta2 = delta*delta;

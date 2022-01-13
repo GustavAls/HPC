@@ -10,13 +10,12 @@
 
 #ifdef _JACOBI
 #include "jacobi.h"
+#include "jacobi_reduce.h"
+#include "jacobi_collapse.h"
 #endif
 
-/*#ifdef _GAUSS_SEIDEL
-#include "gauss_seidel.h"
-#endif*/
-
 #ifdef _GAUSS_SEIDEL
+#include "gauss_seidel.h"
 #include "gauss_seidel_omp.h"
 #endif
 
@@ -71,6 +70,11 @@ main(int argc, char *argv[]) {
     iter = gauss_seidel_omp(u, F, N, iter_max, tolerance);
     elapsed = omp_get_wtime() - start;
     #endif
+    // #ifdef _JACOBI
+    // start = omp_get_wtime();
+    // iter = jacobi_reduction(u_old, u, F, N, iter_max, tolerance);
+    // elapsed = omp_get_wtime() - start;
+    // #endif
     /*#ifdef _GAUSS_SEIDEL
     start = omp_get_wtime();
     iter = gauss_seidel(u, F, N, iter_max, tolerance);
