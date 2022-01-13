@@ -17,7 +17,7 @@ jacobi_barrier(double ***u_old,double ***u,double ***F, int N, int iterations, d
     n = 0;
     #pragma omp parallel shared(delta2, u_old, u, N, tolerance, F, iterations, factor)
     while(temp_dist > tolerance && n < iterations){
-
+        
         #pragma omp for reduction(+: dist)
         for(int i = 1; i < (N - 1); i++){
             for(int j = 1; j < (N - 1); j++){
@@ -30,9 +30,8 @@ jacobi_barrier(double ***u_old,double ***u,double ***F, int N, int iterations, d
                     dist += (u[i][j][k] - u_old[i][j][k]) * (u[i][j][k] - u_old[i][j][k]);
                 }
             }
-        }
+        } // implicit barrier
 
-        //Set the values computed for u, into u_old
         #pragma omp for
         for(int i = 1; i < (N-1); i++){
             for(int j = 1; j < (N - 1); j++){
@@ -40,14 +39,14 @@ jacobi_barrier(double ***u_old,double ***u,double ***F, int N, int iterations, d
                     u_old[i][j][k] = u[i][j][k];
                 }
             }
-        }
+        } // implicit barrier
         
         #pragma omp single
         {
             temp_dist = sqrt(dist);
             dist = 0;
             n++;
-        }
+        } // implicit barrier
     }
     return(n);
 }
