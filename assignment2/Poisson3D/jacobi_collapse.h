@@ -6,6 +6,6 @@
 #ifndef _JACOBI_H
 #define _JACOBI_H
 
-int jacobi_reduction(double ***, double ***, double ***, int, int, double);
+int jacobi_collapse(double ***, double ***, double ***, int, int, double);
 
 #endif

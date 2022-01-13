@@ -1,11 +1,13 @@
-/* jacobi.c - Poisson problem in 3d
- * 
+/* gauss_seidel.c - Poisson problem in 3d
+ *
  */
 #include <math.h>
 #include <stdio.h>
+#include <omp.h>
+
 
 int
-jacobi_reduction(double ***u_old,double ***u,double ***F, int N, int iterations, double tolerance) {
+jacobi_collapse(double ***u_old,double ***u,double ***F, int N, int iterations, double tolerance) {
     int n;
     double delta = 2.0/((double)N-1.0);
     double delta2 = delta*delta;
@@ -15,8 +17,8 @@ jacobi_reduction(double ***u_old,double ***u,double ***F, int N, int iterations,
     n = 0;
     while(dist > tolerance && n < iterations){
         dist = 0;
-        // #pragma omp parallel for reduction(+: dist)
-        #pragma omp parallel for reduction(+: dist) default(none) private(n) shared(delta2, u_old, u, N, tolerance, F, iterations)
+        // #pragma omp parallel for collapse(3) reduction(+: dist)
+        #pragma omp parallel for collapse(3) reduction(+: dist) default(none) private(n) shared(delta2, u_old, u, N, tolerance, F, iterations)
         for(int i = 1; i < (N - 1); i++){
             for(int j = 1; j < (N - 1); j++){
                 for(int k = 1; k < (N - 1); k++){
