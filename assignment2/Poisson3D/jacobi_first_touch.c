@@ -18,9 +18,7 @@ jacobi_first_touch(double ***u_old,double ***u,double ***F, int N, int iteration
     temp_dist = tolerance + 1.0;
     n = 0;
 
-    #pragma omp parallel private(n) shared(delta2, u_old, u, N, tolerance, F, iterations, dist, start_T, temp_dist)
-    {
-    #pragma omp for
+    #pragma omp parallel for private(n) default(shared)
     for(int i=1;i<(N-1);i++){
         for(int j=1;j<(N-1);j++){
             for(int k=1;k<(N-1);k++){
@@ -47,6 +45,7 @@ jacobi_first_touch(double ***u_old,double ***u,double ***F, int N, int iteration
             u[i][j][N-1] = 20;
         }
     }
+    
     for(int j=0; j<N; j++){
         for(int k=0; k<N; k++){
             u_old[0][j][k] = 20;
@@ -57,6 +56,7 @@ jacobi_first_touch(double ***u_old,double ***u,double ***F, int N, int iteration
         }
     }
     
+    #pragma omp parallel private(n) shared(delta2, u_old, u, N, tolerance, F, iterations, dist, start_T, temp_dist)
     while(temp_dist > tolerance && n < iterations){
         #pragma omp for reduction(+: dist)
         for(int i = 1; i < (N - 1); i++){
@@ -87,7 +87,6 @@ jacobi_first_touch(double ***u_old,double ***u,double ***F, int N, int iteration
             dist = 0;
             n++;
         } // implicit barrier
-    }
     }
     return(n);
 }
