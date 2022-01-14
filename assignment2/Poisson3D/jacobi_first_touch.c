@@ -9,15 +9,15 @@ int
 jacobi_first_touch(double ***u_old,double ***u,double ***F, int N, int iterations, double tolerance, double start_T) {
     
     
+   
     int n;
     double delta = 2.0/((double)N-1.0);
     double delta2 = delta*delta;
     double factor = 1.0 / 6.0;
-    double dist, temp_dist;
-    dist = 0;
-    temp_dist = tolerance + 1.0;
-    n = 0;
 
+    double dist;
+    dist = tolerance + 1.0;
+    n = 0;
     #pragma omp parallel for private(n) default(shared)
     for(int i=1;i<(N-1);i++){
         for(int j=1;j<(N-1);j++){
@@ -55,10 +55,10 @@ jacobi_first_touch(double ***u_old,double ***u,double ***F, int N, int iteration
             u[N-1][j][k] = 20;
         }
     }
-    
-    #pragma omp parallel private(n) shared(delta2, u_old, u, N, tolerance, F, iterations, dist, start_T, temp_dist)
-    while(temp_dist > tolerance && n < iterations){
-        #pragma omp for reduction(+: dist)
+
+    while(dist > tolerance && n < iterations){
+        dist = 0;
+        #pragma omp parallel for private(n) default(shared) reduction(+: dist)
         for(int i = 1; i < (N - 1); i++){
             for(int j = 1; j < (N - 1); j++){
                 for(int k = 1; k < (N - 1); k++){
@@ -70,23 +70,18 @@ jacobi_first_touch(double ***u_old,double ***u,double ***F, int N, int iteration
                     dist += (u[i][j][k] - u_old[i][j][k]) * (u[i][j][k] - u_old[i][j][k]);
                 }
             }
-        } // implicit barrier
+        }
 
-        #pragma omp for
+        dist = sqrt(dist);
+        #pragma omp parallel for
         for(int i = 1; i < (N-1); i++){
             for(int j = 1; j < (N - 1); j++){
                 for(int k = 1; k < (N - 1); k++){
                     u_old[i][j][k] = u[i][j][k];
                 }
             }
-        } // implicit barrier
-        
-        #pragma omp single
-        {
-            temp_dist = sqrt(dist);
-            dist = 0;
-            n++;
-        } // implicit barrier
+        }
+        n++;
     }
     return(n);
 }
