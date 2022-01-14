@@ -88,5 +88,6 @@ jacobi_first_touch(double ***u_old,double ***u,double ***F, int N, int iteration
             n++;
         } // implicit barrier
     }
+    }
     return(n);
 }
