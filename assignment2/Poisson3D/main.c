@@ -63,13 +63,10 @@ main(int argc, char *argv[]) {
         exit(-1);
     }
 
-    double start, elapsed, init_start, init_elapsed;
+    double start, elapsed;
     int iter;
 
-    init_start = omp_get_wtime();
     initialize_data(N, u, u_old, F, start_T);
-    init_elapsed = omp_get_wtime() - init_start;
-
 
     #ifdef _GAUSS_SEIDEL
     start = omp_get_wtime();
