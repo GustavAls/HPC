@@ -15,7 +15,7 @@ jacobi_barrier(double ***u_old,double ***u,double ***F, int N, int iterations, d
     dist = 0;
     temp_dist = tolerance + 1.0;
     n = 0;
-    #pragma omp parallel shared(delta2, u_old, u, N, tolerance, F, iterations, factor)
+    #pragma omp parallel default(none) private(n) shared(delta2, u_old, u, N, tolerance, F, iterations, factor, temp_dist, dist)
     while(temp_dist > tolerance && n < iterations){
         
         #pragma omp for reduction(+: dist)
