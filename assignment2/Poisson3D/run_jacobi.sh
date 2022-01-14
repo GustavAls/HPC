@@ -1,5 +1,5 @@
 #!/bin/bash
-#BSUB -J Jacobi
+#BSUB -J Jacobi_Collapse_OPT_O3
 #BUSB -q hpcintro
 ## set wall time hh:mm
 #BSUB -W 00:40
@@ -22,12 +22,13 @@ N_THREADS="1 2 4 16 24"
 
 # echo "CPU information"
 # lscpu
+rm -rf $DIRECTORY/jacobi_Collapse_OPTO3.txt
 
 for M in $N_THREADS
 do
-	rm -rf $DIRECTORY/jacobi_$M.txt
 	for N in $NS
 	do
-		OMP_NUM_THREADS=$M $EXECUTABLE $N $ITER $THRESH $START_AT >> $DIRECTORY/jacobi_$M.txt
+		echo -n "$M "  >> $DIRECTORY/jacobi_Collapse_OPTO3.txt
+		OMP_NUM_THREADS=$M $EXECUTABLE $N $ITER $THRESH $START_AT >> $DIRECTORY/jacobi_Collapse_OPTO3.txt
 	done
 done 
