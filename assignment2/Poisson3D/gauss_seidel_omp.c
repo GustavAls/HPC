@@ -1,12 +1,11 @@
 /* gauss_seidel.c - Poisson problem in 3d
  *
  */
-#include "calculate_f.h"
 #include <math.h>
 #include <stdio.h>
 #include <omp.h>
 
-int
+void
 gauss_seidel_omp(double ***u,double ***F,int N, int iterations, double tolerance) {
     int n = 0;
     int i, j, k;
@@ -30,11 +29,10 @@ gauss_seidel_omp(double ***u,double ***F,int N, int iterations, double tolerance
                         u[i][j][k-1] + u[i][j][k+1] + 
                         delta2 * F[i][j][k]
                     );
-                    }
+                }
                 #pragma omp ordered depend(source) /*Ending ordered*/
             }
         }/*End of for ordered*/
     }
     }/*End of parallel*/
-    return(n);
 }
