@@ -18,16 +18,6 @@ jacobi_first_touch(double ***u_old,double ***u,double ***F, int N, int iteration
     double dist;
     dist = tolerance + 1.0;
     n = 0;
-    #pragma omp parallel for default(shared) private(n) 
-    for(int i=1;i<(N-1);i++){
-        for(int j=1;j<(N-1);j++){
-            for(int k=1;k<(N-1);k++){
-                u_old[i][j][k] = start_T;
-                u[i][j][k] = start_T;
-                F[i][j][k] = calculate_f(N, i, j, k);
-            }
-        }
-    }
 
     for(int i=0;i<(N);i++){
         for(int k=0;k<(N);k++){
@@ -56,6 +46,16 @@ jacobi_first_touch(double ***u_old,double ***u,double ***F, int N, int iteration
         }
     }
 
+    #pragma omp parallel for default(shared)
+    for(int i=1;i<(N-1);i++){
+        for(int j=1;j<(N-1);j++){
+            for(int k=1;k<(N-1);k++){
+                u_old[i][j][k] = start_T;
+                u[i][j][k] = start_T;
+                F[i][j][k] = calculate_f(N, i, j, k);
+            }
+        }
+    }
     while(dist > tolerance && n < iterations){
         dist = 0;
         #pragma omp parallel for reduction(+: dist) default(none) \

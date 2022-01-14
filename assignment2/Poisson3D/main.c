@@ -66,7 +66,7 @@ main(int argc, char *argv[]) {
     double start, elapsed;
     int iter;
 
-    initialize_data(N, u, u_old, F, start_T);
+    //initialize_data(N, u, u_old, F, start_T);
 
     #ifdef _GAUSS_SEIDEL
     start = omp_get_wtime();
