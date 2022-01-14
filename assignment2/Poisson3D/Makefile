@@ -45,7 +45,7 @@ realclean: clean
 
 # DO NOT DELETE
 
-main_j.o: main.c print.h jacobi.h jacobi_reduce.h jacobi_collapse.h jacobi_barrier.h
+main_j.o: main.c print.h jacobi.h jacobi_reduce.h jacobi_collapse.h jacobi_barrier.h jacobi_first_touch.h
 main_gs.o: main.c print.h gauss_seidel.h gauss_seidel_omp.h
 print.o: print.h
 initialize_data.o: initialize_data.h calculate_f.h

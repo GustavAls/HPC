@@ -79,12 +79,11 @@ main(int argc, char *argv[]) {
     // iter = jacobi(u_old, u, F, N, iter_max, tolerance);
     // iter = jacobi_reduce(u_old, u, F, N, iter_max, tolerance);
     // iter = jacobi_collapse(u_old, u, F, N, iter_max, tolerance);
-    // iter = jacobi_barrier(u_old, u, F, N, iter_max, tolerance);
-    iter = jacobi_first_touch(u_old, u, F, N, iter_max, tolerance, start_T);
+    iter = jacobi_barrier(u_old, u, F, N, iter_max, tolerance);
+    // iter = jacobi_first_touch(u_old, u, F, N, iter_max, tolerance, start_T);
     elapsed = omp_get_wtime() - start;
 
     #endif
-
 
     // FILE *file = fopen("result.txt", "w");
     // fprintf(file, "%f %d", elapsed, iter);
