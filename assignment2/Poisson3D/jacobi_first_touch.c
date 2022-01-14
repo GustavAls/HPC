@@ -3,6 +3,7 @@
  */
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <omp.h>
 
 double
@@ -15,7 +16,7 @@ jacobi_first_touch(double ***u_old,double ***u,double ***F, int N, int iteration
     double delta2 = delta*delta;
     double factor = 1.0 / 6.0;
 
-    double dist;
+    double dist, start, elapsed;
     dist = tolerance + 1.0;
     n = 0;
     #pragma omp parallel for private(n) default(shared)
@@ -56,7 +57,7 @@ jacobi_first_touch(double ***u_old,double ***u,double ***F, int N, int iteration
         }
     }
 
-    double start = omp_get_wtime();
+    start = omp_get_wtime();
     while(dist > tolerance && n < iterations){
         dist = 0;
         #pragma omp parallel for private(n) default(shared) reduction(+: dist)
@@ -84,6 +85,6 @@ jacobi_first_touch(double ***u_old,double ***u,double ***F, int N, int iteration
         }
         n++;
     }
-    double elapsed = omp_get_wtime() - start;
+    elapsed = omp_get_wtime() - start;
     return(elapsed);
 }
