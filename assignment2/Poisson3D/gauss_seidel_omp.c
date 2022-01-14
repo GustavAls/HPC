@@ -1,6 +1,7 @@
 /* gauss_seidel.c - Poisson problem in 3d
  *
  */
+#include "calculate_f.h"
 #include <math.h>
 #include <stdio.h>
 #include <omp.h>
@@ -12,6 +13,7 @@ gauss_seidel_omp(double ***u,double ***F,int N, int iterations, double tolerance
     double delta = 2.0/((double)N-1.0);
     double delta2 = delta*delta;
     double div = 1.0/6.0;
+    
     #pragma omp parallel default(none) private(n) \
          shared(delta2, u, N, tolerance, F, iterations, div)
     {
