@@ -63,10 +63,14 @@ main(int argc, char *argv[]) {
         exit(-1);
     }
 
-    //initialize_data(N, u, u_old, F, start_T);
-
-    double start, elapsed;
+    double start, elapsed, init_start, init_elapsed;
     int iter;
+
+    init_start = omp_get_wtime();
+    initialize_data(N, u, u_old, F, start_T);
+    init_elapsed = omp_get_wtime() - init_start;
+
+
     #ifdef _GAUSS_SEIDEL
     start = omp_get_wtime();
     // iter = gauss_seidel(u, F, N, iter_max, tolerance);
@@ -79,8 +83,8 @@ main(int argc, char *argv[]) {
     // iter = jacobi_reduce(u_old, u, F, N, iter_max, tolerance);
     // iter = jacobi_collapse(u_old, u, F, N, iter_max, tolerance);
     // iter = jacobi_barrier(u_old, u, F, N, iter_max, tolerance);
-    elapsed = jacobi_first_touch(u_old, u, F, N, iter_max, tolerance, start_T);
-    //elapsed = omp_get_wtime() - start;
+    iter = jacobi_first_touch(u_old, u, F, N, iter_max, tolerance, start_T);
+    elapsed = omp_get_wtime() - start - init_elapsed;
     iter = elapsed;
 
     #endif

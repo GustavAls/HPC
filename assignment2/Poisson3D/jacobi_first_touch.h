@@ -6,6 +6,6 @@
 #ifndef _JACOBI_H
 #define _JACOBI_H
 
-double jacobi_first_touch(double ***, double ***, double ***, int, int, double start_T);
+int jacobi_first_touch(double ***, double ***, double ***, int, int, double start_T);
 
 #endif
