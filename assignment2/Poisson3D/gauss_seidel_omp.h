@@ -5,6 +5,6 @@
 #define _GAUSS_SEIDEL_H
 
 // define your function prototype here
-int gauss_seidel_omp(double ***u,double ***F, int N, int iterations, double tolerance);
+void gauss_seidel_omp(double ***u,double ***F, int N, int iterations, double tolerance);
 
 #endif
