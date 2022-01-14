@@ -74,13 +74,15 @@ main(int argc, char *argv[]) {
     elapsed = omp_get_wtime() - start;
     #endif
     #ifdef _JACOBI
-    start = omp_get_wtime();
+    //start = omp_get_wtime();
     // iter = jacobi(u_old, u, F, N, iter_max, tolerance);
     // iter = jacobi_reduce(u_old, u, F, N, iter_max, tolerance);
     // iter = jacobi_collapse(u_old, u, F, N, iter_max, tolerance);
     // iter = jacobi_barrier(u_old, u, F, N, iter_max, tolerance);
-    iter = jacobi_first_touch(u_old, u, F, N, iter_max, tolerance, start_T);
-    elapsed = omp_get_wtime() - start;
+    elapsed = jacobi_first_touch(u_old, u, F, N, iter_max, tolerance, start_T);
+    //elapsed = omp_get_wtime() - start;
+    iter = 0;
+
     #endif
 
 
