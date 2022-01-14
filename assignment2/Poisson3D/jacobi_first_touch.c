@@ -18,7 +18,7 @@ jacobi_first_touch(double ***u_old,double ***u,double ***F, int N, int iteration
     temp_dist = tolerance + 1.0;
     n = 0;
 
-    #pragma omp parallel default(none) private(n) shared(delta2, u_old, u, N, tolerance, F, iterations, dist, start_T)
+    #pragma omp parallel private(n) shared(delta2, u_old, u, N, tolerance, F, iterations, dist, start_T, temp_dist)
     {
     #pragma omp for
     for(int i=1;i<(N-1);i++){
