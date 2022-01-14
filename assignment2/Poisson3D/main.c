@@ -81,7 +81,7 @@ main(int argc, char *argv[]) {
     // iter = jacobi_barrier(u_old, u, F, N, iter_max, tolerance);
     elapsed = jacobi_first_touch(u_old, u, F, N, iter_max, tolerance, start_T);
     //elapsed = omp_get_wtime() - start;
-    iter = 0;
+    iter = elapsed;
 
     #endif
 
