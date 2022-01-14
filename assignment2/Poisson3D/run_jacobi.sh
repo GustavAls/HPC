@@ -1,6 +1,5 @@
 #!/bin/bash
-#BSUB -J Jacobi_Collapse_OPT_O3
-#BUSB -q hpcintro
+#BSUB -J Jacobi_FirstTouch_NOPTBUSB -q hpcintro
 ## set wall time hh:mm
 #BSUB -W 00:40
 #BSUB -R "rusage[mem=2048MB] span[hosts=1]"
@@ -22,13 +21,13 @@ N_THREADS="1 2 4 16 24"
 
 # echo "CPU information"
 # lscpu
-rm -rf $DIRECTORY/jacobi_Collapse_OPTO3.txt
+rm -rf $DIRECTORY/jacobi_FirstTouch_NOPT.txt
 
 for M in $N_THREADS
 do
 	for N in $NS
 	do
-		echo -n "$M "  >> $DIRECTORY/jacobi_Collapse_OPTO3.txt
-		OMP_NUM_THREADS=$M $EXECUTABLE $N $ITER $THRESH $START_AT >> $DIRECTORY/jacobi_Collapse_OPTO3.txt
+		echo -n "$M "  >> $DIRECTORY/jacobi_FirstTouch_NOPT.txt
+		OMP_NUM_THREADS=$M $EXECUTABLE $N $ITER $THRESH $START_AT >> $DIRECTORY/jacobi_FirstTouch_NOPT.txt
 	done
 done 
