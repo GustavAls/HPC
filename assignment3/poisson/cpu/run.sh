@@ -10,7 +10,7 @@ OUTFILE=cpu.txt
 
 module load gcc/10.3.0-binutils-2.36.1
 
-NS="2 4 8 16 32"
+NS="2 4 8 16 32 64 128"
 ITER=10000
 THRESH=0.01
 START_AT=20

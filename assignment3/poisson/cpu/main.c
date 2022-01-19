@@ -65,7 +65,7 @@ main(int argc, char *argv[]) {
 
     // FILE *file = fopen("result.txt", "w");
     // fprintf(file, "%f %d", elapsed, iter);
-    printf("%d %f %d \n", N, elapsed, iter);
+    printf("%d %f\n", N, elapsed);
 
     // dump  results if wanted 
     switch(output_type) {

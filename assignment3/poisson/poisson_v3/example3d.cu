@@ -21,6 +21,12 @@ main(int argc, char *argv[])
     double 	***u_h = NULL;
     double 	***u_d0 = NULL;
     double 	***u_d1 = NULL;
+    double 	***uo_h = NULL;
+    double 	***uo_d0 = NULL;
+    double 	***uo_d1 = NULL;
+    double 	***f_h = NULL;
+    double 	***f_d0 = NULL;
+    double 	***f_d1 = NULL;
 
     // Allocate 3d array in host memory.
     if ( (u_h = d_malloc_3d(N, N, N)) == NULL ) {
