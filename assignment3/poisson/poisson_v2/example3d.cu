@@ -3,9 +3,23 @@
 // alloc3d.h, alloc3d_gpu.h, and transfer3d_gpu.h.
 //
 #include <stdio.h>
+#include <omp.h>
 #include "alloc3d.h"
 #include "alloc3d_gpu.h"
 #include "transfer3d_gpu.h"
+#include "initialize_data.h"
+#include "jacobi.h"
+
+void interchange_memory(double ****a, double ****b){
+    double*** temp = *a;
+    *a = *b;
+    *b = temp;
+ }
+//  void interchange_memory(double ***a, double ***b){
+//     double*** temp = a;
+//     a = b;
+//     b = temp;
+//  }
 
 int
 main(int argc, char *argv[])
@@ -15,45 +29,90 @@ main(int argc, char *argv[])
     // the top part of the host array is transferred to device 0 and the 
     // bottom part to device 1.
 
-    const int N = 200;            // Dimension N x N x N.
+    // const int N = 16;            // Dimension N x N x N.
+    int N = atoi(argv[1]);
     const long nElms = N * N * N; // Number of elements.
+    const int start_T = 20;
+    const int iterations = 10000;
+    
 
     double 	***u_h = NULL;
-    double 	***u_d0 = NULL;
-    double 	***u_d1 = NULL;
+    double 	***uo_h = NULL;
+    double 	***f_h = NULL;
+    double 	***u_d = NULL;
+    double 	***uo_d = NULL;
+    double 	***f_d = NULL;
+
+    cudaSetDevice(0);
 
     // Allocate 3d array in host memory.
     if ( (u_h = d_malloc_3d(N, N, N)) == NULL ) {
         perror("array u: allocation failed");
         exit(-1);
     }
+    if ( (uo_h = d_malloc_3d(N, N, N)) == NULL ) {
+        perror("array u: allocation failed");
+        exit(-1);
+    }
+    if ( (f_h = d_malloc_3d(N, N, N)) == NULL ) {
+        perror("array u: allocation failed");
+        exit(-1);
+    }
 
     // Allocate 3d array of half size in device 0 memory.
-    if ( (u_d0 = d_malloc_3d_gpu(N / 2, N, N)) == NULL ) {
+    if ( (u_d = d_malloc_3d_gpu(N, N, N)) == NULL ) {
+        perror("array u_d0: allocation on gpu failed");
+        exit(-1);
+    }
+    if ( (uo_d = d_malloc_3d_gpu(N, N, N)) == NULL ) {
+        perror("array u_d0: allocation on gpu failed");
+        exit(-1);
+    }
+    if ( (f_d = d_malloc_3d_gpu(N, N, N)) == NULL ) {
         perror("array u_d0: allocation on gpu failed");
         exit(-1);
     }
 
-    // Allocate 3d array of half size in device 1 memory.
-    if ( (u_d1 = d_malloc_3d_gpu(N / 2, N, N)) == NULL ) {
-        perror("array u_d1: allocation on gpu failed");
-        exit(-1);
+    // CPU initializes vectors.
+    initialize_data(N, u_h, uo_h, f_h, start_T);
+
+    // CPU -> GPU transfer.
+    transfer_3d(u_d, u_h, N, N, N, cudaMemcpyHostToDevice);
+
+    // kernel settings
+    dim3 blocksize(32, 32, 32);
+    dim3 gridsize( ceil((int) N/blocksize.x),ceil((int) N/blocksize.y),ceil((int) N/blocksize.z) );
+
+    // // timing
+    // cudaEvent_t start, stop;
+    // cudaEventCreate(&start);
+    // cudaEventCreate(&stop);
+
+    // CPU controlled loop Jacobi
+    double delta = 2.0/((double)N-1.0);
+    double delta2 = delta*delta;
+    double factor = 1.0 / 6.0;
+    double ts = omp_get_wtime();
+    for(int n=0; n < iterations; n++){
+        interchange_memory(&uo_d, &u_d);
+        jacobi<<<gridsize,blocksize>>>(u_d, uo_d, f_d, N, iterations, factor, delta2);
+        cudaDeviceSynchronize(); // Synchronize globally between each step
     }
+    double te = omp_get_wtime() - ts;
 
-    // Transfer top part to device 0.
-    transfer_3d_from_1d(u_d0, u_h[0][0], N / 2, N, N, cudaMemcpyHostToDevice);
+    // GPU -> CPU transfer.
+    transfer_3d(u_h, u_d, N, N, N, cudaMemcpyDeviceToHost);
 
-    // Transfer bottom part to device 1.
-    transfer_3d_from_1d(u_d1, u_h[0][0] + nElms / 2, N / 2, N, N, cudaMemcpyHostToDevice);
-
-    // ... compute ...
-
-    // ... transfer back ...
+    // Print times.
+    printf("%d %f\n", N, te);
 
     // Clean up.
     free(u_h);
-    free_gpu(u_d0);
-    free_gpu(u_d1);
+    free(uo_h);
+    free(f_h);
+    free_gpu(u_d);
+    free_gpu(uo_d);
+    free_gpu(f_d);
 
-    printf("Done\n");
+    // printf("Done\n");
 }

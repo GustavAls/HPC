@@ -29,7 +29,8 @@ main(int argc, char *argv[])
     // the top part of the host array is transferred to device 0 and the 
     // bottom part to device 1.
 
-    const int N = 16;            // Dimension N x N x N.
+    // const int N = 16;            // Dimension N x N x N.
+    int N = atoi(argv[1]);
     const long nElms = N * N * N; // Number of elements.
     const int start_T = 20;
     const int iterations = 10000;
@@ -72,12 +73,13 @@ main(int argc, char *argv[])
         exit(-1);
     }
 
+    // CPU initializes vectors.
     initialize_data(N, u_h, uo_h, f_h, start_T);
 
-    // Transfer top part to device 0.
+    // CPU -> GPU transfer.
     transfer_3d(u_d, u_h, N, N, N, cudaMemcpyHostToDevice);
 
-    // ... compute ...
+    // CPU controlled loop Jacobi
     double delta = 2.0/((double)N-1.0);
     double delta2 = delta*delta;
     double factor = 1.0 / 6.0;
@@ -85,13 +87,14 @@ main(int argc, char *argv[])
     for(int n=0; n < iterations; n++){
         interchange_memory(&uo_d, &u_d);
         jacobi<<<1, 1>>>(u_d, uo_d, f_d, N, iterations, factor, delta2);
-        cudaDeviceSynchronize();
+        cudaDeviceSynchronize(); // Synchronize globally between each step
     }
     double te = omp_get_wtime() - ts;
 
-    // ... transfer back ...
+    // GPU -> CPU transfer.
     transfer_3d(u_h, u_d, N, N, N, cudaMemcpyDeviceToHost);
 
+    // Print times.
     printf("%d %f\n", N, te);
 
     // Clean up.
@@ -102,5 +105,5 @@ main(int argc, char *argv[])
     free_gpu(uo_d);
     free_gpu(f_d);
 
-    printf("Done\n");
+    // printf("Done\n");
 }
