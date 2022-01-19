@@ -21,10 +21,10 @@ __global__ void kernel2(int m, int n, int k, double *A, double *B, double *C) {
   
   
 extern "C" {
-    #include <math.h>
     void matmult_gpu2(int m, int n, int k, double *A, double *B, double *C) {
         double* A_d, * B_d, * C_d;
         int d1,d2;
+        int block_size = 16;
         //Cuda allocate memory on device for matrices
         cudaMalloc((void**)&A_d, m*k * sizeof(double));
         cudaMalloc((void**)&B_d, k*n * sizeof(double));
@@ -38,11 +38,11 @@ extern "C" {
         cudaMemset(C_d, 0, m*n*sizeof(double));
                 
         //Assigning a 2D thread grid in each block
-        dim3 threadsPerBlock(16,16,1);
+        dim3 threadsPerBlock(block_size, block_size);
 
         //Defining the grid layout depending on the input dimensions
-        d1 = ceil((double) m / 16.0);
-        d2 = ceil((double) n / 16.0);
+        d1 = (n - 1) / block_size + 1;
+        d2 = (m - 1) / block_size + 1;
 
         dim3 blocksPerGrid(d1, d2);
 
