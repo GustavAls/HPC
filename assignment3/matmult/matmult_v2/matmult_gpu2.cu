@@ -1,8 +1,6 @@
 /*
 Implementation using one thread pr. element in C
 */
-#include <math.h>
-
 __global__ void kernel2(int m, int n, int k, double *A, double *B, double *C) {
     double sum = 0;
     int i, j, q;
@@ -23,6 +21,7 @@ __global__ void kernel2(int m, int n, int k, double *A, double *B, double *C) {
   
   
 extern "C" {
+    #include <math.h>
     void matmult_gpu2(int m, int n, int k, double *A, double *B, double *C) {
         double* A_d, * B_d, * C_d;
         int d1,d2;
