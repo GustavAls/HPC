@@ -18,7 +18,7 @@ OUTFILE="results_gpu1.txt"
 rm $OUTFILE
 EXECUTABLE=../matmult_tools/matmult_f.nvcc
 
-for size in 512 1024 2048 4096 8192 #10240
+for size in 512 1024 2048 4096
     do
         MFLOPS_MAX_IT=${size_its[${size}]} MATMULT_COMPARE=0 $EXECUTABLE $method $size $size $size
     done
