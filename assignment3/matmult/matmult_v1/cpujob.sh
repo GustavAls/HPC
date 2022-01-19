@@ -1,12 +1,21 @@
 #!/bin/bash
-#BSUB -q hpcintrogpu
+#BSUB -q hpcintro
 #BSUB -J CPUMatmult_v1
 #BSUB -o CPU%J.out
 #BSUB -e Error_%J.err
 #BSUB -R "rusage[mem=2048MB]"
 #BSUB -W 01:00
 #BSUB -n 1
-#BSUB -R "select[model=XeonE5_2660v3]"
 
-./matmult_gpu1
+
+declare -A size_its
+size_its=( [512]=1000 [1024]=100 [2048]=10 [4096]=1 )
+METHOD = ./libmatmult.so 
+
+
+
+for size in 512 1024 2048 4096 8192 #10240
+    do
+        MFLOPS_MAX_IT=${size_its[${size}]} MATMULT_COMPARE=0 ../matmult_tools/matmult_f.nvcc $(METHOD) $size $size $size
+    done
 

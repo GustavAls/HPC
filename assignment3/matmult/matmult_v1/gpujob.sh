@@ -12,13 +12,13 @@ module load gcc/10.3.0-binutils-2.36.1
 
 
 declare -A size_its
-size_its=( [512]=100 [1024]=10 [2048]=1 [4096]=1 [8192]=1 [10240]=1 )
+size_its=([512]=100 [1024]=10 [2048]=1 [4096]=1)
 
 OUTFILE="results_gpu1.txt"
-rm $OUTFILE
-EXECUTABLE=../matmult_tools/matmult_f.nvcc
+rm -f $OUTFILE
+EXECUTABLE=./matmult_f.nvcc
 
 for size in 512 1024 2048 4096
     do
-        MFLOPS_MAX_IT=${size_its[${size}]} MATMULT_COMPARE=0 $EXECUTABLE $method $size $size $size
+        MFLOPS_MAX_IT=${size_its[${size}]} MATMULT_COMPARE=0 $EXECUTABLE lib $size $size $size
     done
