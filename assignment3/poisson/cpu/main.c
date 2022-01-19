@@ -21,9 +21,9 @@ main(int argc, char *argv[]) {
     int 	iter_max = 1000;
     double	tolerance;
     double	start_T;
-    int		output_type = 0;
+    int		output_type = 4;
     char	*output_prefix = "poisson_res";
-    char        *output_ext    = "";
+    char    *output_ext    = "";
     char	output_filename[FILENAME_MAX];
     double 	***u    = NULL;
     double 	***F    = NULL;
