@@ -42,8 +42,8 @@ extern "C" {
         dim3 threadsPerBlock(block_size, block_size);
 
         //Defining the grid layout depending on the input dimensions
-        d1 = (int) (n - 1) / block_size + 1;
-        d2 = (int) (m - 1) / block_size + 1;
+        d1 = (int) (m - 1) / block_size + 1;
+        d2 = (int) (n - 1) / block_size + 1;
 
         //Defining grid size
         dim3 blocksPerGrid(d1, d2);
