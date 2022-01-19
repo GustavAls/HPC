@@ -1,0 +1,6 @@
+.vscode/
+experiments/
+*.o
+poisson_gs
+poisson_j
+example3d
