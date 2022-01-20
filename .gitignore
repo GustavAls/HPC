@@ -1,5 +1,6 @@
 .vscode/
-experiments/
+venv/
+# experiments/
 *.o
 poisson_gs
 poisson_j

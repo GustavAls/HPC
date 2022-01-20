@@ -33,7 +33,7 @@ main(int argc, char *argv[])
     int N = atoi(argv[1]);
     const long nElms = N * N * N; // Number of elements.
     const int start_T = 20;
-    const int iterations = 10000;
+    const int iterations = 100000;
     
 
     double 	***u_h = NULL;
@@ -80,7 +80,7 @@ main(int argc, char *argv[])
     transfer_3d(u_d, u_h, N, N, N, cudaMemcpyHostToDevice);
 
     // kernel settings
-    dim3 blocksize(32, 32, 32);
+    dim3 blocksize(8, 8, 8); // 8*8*8 < 1024
     dim3 gridsize( ceil((int) N/blocksize.x),ceil((int) N/blocksize.y),ceil((int) N/blocksize.z) );
 
     // // timing
