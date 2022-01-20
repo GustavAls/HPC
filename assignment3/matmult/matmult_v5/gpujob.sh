@@ -21,5 +21,5 @@ EXECUTABLE=./matmult_f.nvcc
 
 for size in 512 1024 2048 4096 8192
     do
-        MFLOPS_MAX_IT=${size_its[${size}]} MATMULT_COMPARE=0 $EXECUTABLE gpu2 $size $size $size >> $OUTFILE
+        MFLOPS_MAX_IT=${size_its[${size}]} MATMULT_COMPARE=0 $EXECUTABLE gpu5 $size $size $size >> $OUTFILE
     done
