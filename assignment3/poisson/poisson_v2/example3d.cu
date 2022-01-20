@@ -2,6 +2,7 @@
 // File 'example3d.cu' illustrates how to use the functions in 
 // alloc3d.h, alloc3d_gpu.h, and transfer3d_gpu.h.
 //
+
 #include <stdio.h>
 #include <omp.h>
 #include "alloc3d.h"
@@ -10,6 +11,7 @@
 #include "initialize_data.h"
 #include "jacobi.h"
 
+extern "C" {
 void interchange_memory(double ****a, double ****b){
     double*** temp = *a;
     *a = *b;
@@ -78,15 +80,12 @@ main(int argc, char *argv[])
 
     // CPU -> GPU transfer.
     transfer_3d(u_d, u_h, N, N, N, cudaMemcpyHostToDevice);
+    transfer_3d(uo_d, uo_h, N, N, N, cudaMemcpyHostToDevice);
+    transfer_3d(f_d, f_h, N, N, N, cudaMemcpyHostToDevice);
 
     // kernel settings
     dim3 blocksize(8, 8, 8); // 8*8*8 < 1024
     dim3 gridsize( ceil((int) N/blocksize.x),ceil((int) N/blocksize.y),ceil((int) N/blocksize.z) );
-
-    // // timing
-    // cudaEvent_t start, stop;
-    // cudaEventCreate(&start);
-    // cudaEventCreate(&stop);
 
     // CPU controlled loop Jacobi
     double delta = 2.0/((double)N-1.0);
@@ -102,6 +101,8 @@ main(int argc, char *argv[])
 
     // GPU -> CPU transfer.
     transfer_3d(u_h, u_d, N, N, N, cudaMemcpyDeviceToHost);
+    transfer_3d(uo_h, uo_d, N, N, N, cudaMemcpyDeviceToHost);
+    transfer_3d(f_h, f_d, N, N, N, cudaMemcpyDeviceToHost);
 
     // Print times.
     printf("%d %f\n", N, te);
@@ -115,4 +116,5 @@ main(int argc, char *argv[])
     free_gpu(f_d);
 
     // printf("Done\n");
+}
 }
