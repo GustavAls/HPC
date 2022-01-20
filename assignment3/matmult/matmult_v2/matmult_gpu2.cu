@@ -56,9 +56,11 @@ extern "C" {
         cudaDeviceSynchronize();
 
         //Copying result to host
-        start = omp_get_wtime();
+        double start2 = omp_get_wtime();
         cudaMemcpy(C, C_d, m*n*sizeof(double), cudaMemcpyDeviceToHost);
-        seconds = omp_get_wtime() - start + seconds;
+        double seconds2 = omp_get_wtime() - start2;
+
+        seconds = seconds + seconds2;
         printf("Effective Bandwidth (GB/s): %f", (m*k + n*k)*sizeof(double)/(seconds*1e9));
 
         //Freeing memory allocated
