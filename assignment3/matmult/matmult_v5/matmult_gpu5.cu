@@ -1,7 +1,8 @@
+/*
+Implementation of matrix multiplication which utilizes shared memory
+*/
 
-
-
-__global__ void m5(int m, int n, int k, double *A, double *B, double *C) {
+__global__ void kernel5(int m, int n, int k, double *A, double *B, double *C) {
     
     extern __shared__ double blocks[];
 
@@ -39,7 +40,7 @@ __global__ void m5(int m, int n, int k, double *A, double *B, double *C) {
 }
 
 extern "C" {
-    void matmult_gpu4(int m, int n, int k, double *A, double *B, double *C) {
+    void matmult_gpu5(int m, int n, int k, double *A, double *B, double *C) {
         double* A_d, * B_d, * C_d;
         //Cuda allocate memory on device for matrices
         cudaMalloc((void**)&A_d, m*k * sizeof(double));
