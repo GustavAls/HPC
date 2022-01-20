@@ -2,7 +2,7 @@
 Implementation delegating STRIDE elements of C to each thread
 */
 
-#define STRIDE 8
+#define STRIDE 2
 
 __global__ void kernel4(int m,int n, int k, double *A, double *B, double *C){
     int i, j, q, l;

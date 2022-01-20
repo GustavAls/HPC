@@ -1,6 +1,6 @@
 #!/bin/bash
 #BSUB -q hpcintrogpu
-#BSUB -J GPUMatmult_v4_8
+#BSUB -J GPUMatmult_v4_2
 #BSUB -o GPU%J.out
 #BSUB -e Error_%J.err
 #BSUB -R "rusage[mem=5GB]"
@@ -13,7 +13,7 @@ module load gcc/10.3.0-binutils-2.36.1
 declare -A size_its
 size_its=([512]=100 [1024]=10 [2048]=1 [4096]=1 [8192]=1)
 
-OUTFILE="results_gpu4_8.txt"
+OUTFILE="results_gpu4_2.txt"
 rm -f $OUTFILE
 EXECUTABLE=./matmult_f.nvcc
 
