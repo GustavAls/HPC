@@ -5,7 +5,7 @@ Implementation letting each thread compute exatcly two elements of C
 //Version 1: right neighbor
 __global__ void kernel3_right(int m, int n, int k, double *A, double *B, double *C) {
     int i, j, q;
-    double sum1 = 0,sum2 = 0;
+    double sum1 = 0.0,sum2 = 0.0;
 
     //Computing the global coordinates of the thread
     i = blockIdx.x * blockDim.x + threadIdx.x;
@@ -31,7 +31,7 @@ __global__ void kernel3_right(int m, int n, int k, double *A, double *B, double 
 __global__ void kernel3_below(int m, int n, int k, double *A, double *B, double *C) {
 
     int i, j, q;
-    double sum1 = 0,sum2 = 0;
+    double sum1 = 0.0,sum2 = 0.0;
 
     //Computing the global coordinates of the thread
     i = 2 * (blockIdx.x * blockDim.x + threadIdx.x);
@@ -80,8 +80,8 @@ extern "C" {
         //Defining grid size
         dim3 blocksPerGrid(d1, d2);
 
-        kernel3_below<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
-        //kernel3_right<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
+        // kernel3_below<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
+        kernel3_right<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
         
         cudaDeviceSynchronize();
 
