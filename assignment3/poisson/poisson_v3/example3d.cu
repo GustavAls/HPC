@@ -42,7 +42,7 @@ void interchange_memory(double ****a, double ****b){
     int j = blockIdx.y * blockDim.y + threadIdx.y;
     int k = blockIdx.z * blockDim.z + threadIdx.z;
 
-    if (i < N/2-1 && j > 0 && j < N-1 && k > 0 && k < N-1) { 
+    if (i < (N/2-1) && j > 0 && j < (N-1) && k > 0 && k < (N-1)) { 
         if (i == 0) {
             u_d1[i][j][k] = factor * (
                 uo_d0[N/2-1][j][k] + uo_d1[i+1][j][k] +  // At the boundary between the two devices, we need the previous value from d0;
@@ -97,6 +97,7 @@ main(int argc, char *argv[])
         exit(-1);
     }
 
+    cudaSetDevice(0);
     // Allocate 3d array of half size in device 0 memory.
     if ( (u_d0 = d_malloc_3d_gpu(N / 2, N, N)) == NULL ) {
         perror("array u_d0: allocation on gpu failed");
@@ -111,6 +112,7 @@ main(int argc, char *argv[])
         exit(-1);
     }
 
+    cudaSetDevice(1);
     // Allocate 3d array of half size in device 1 memory.
     if ( (u_d1 = d_malloc_3d_gpu(N / 2, N, N)) == NULL ) {
         perror("array u_d1: allocation on gpu failed");
@@ -137,6 +139,9 @@ main(int argc, char *argv[])
     // Transfer bottom part to device 1.
     cudaSetDevice(1);
     cudaDeviceEnablePeerAccess(0, 0);
+    // transfer_3d_from_1d(u_d1, &u_h[N/2][0][0], N/2, N, N, cudaMemcpyHostToDevice);
+    // transfer_3d_from_1d(uo_d1, &uo_h[N/2][0][0], N/2, N, N, cudaMemcpyHostToDevice);
+    // transfer_3d_from_1d(f_d1, &f_h[N/2][0][0], N/2, N, N, cudaMemcpyHostToDevice);
     transfer_3d(u_d1, u_h + nElms / 2, N / 2, N, N, cudaMemcpyHostToDevice);
     transfer_3d(uo_d1, uo_h + nElms / 2, N / 2, N, N, cudaMemcpyHostToDevice);
     transfer_3d(f_d1, f_h + nElms / 2, N / 2, N, N, cudaMemcpyHostToDevice);
@@ -163,6 +168,7 @@ main(int argc, char *argv[])
         cudaSetDevice(0);
         cudaDeviceSynchronize();
     }
+    
     double te = omp_get_wtime() - ts;
 
     // ... transfer back ...
