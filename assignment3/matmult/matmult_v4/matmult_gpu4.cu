@@ -1,29 +1,33 @@
-#define STRIDE 4
-extern "C"{
-    __global__ void kernel4(double *A, double *B, double *C,int k,int m,int n){
-        int i, j, q, l;
-        double sum;
-            
-        //Computing the global coordinates of the thread
-        int i = (blockIdx.y * blockDim.y + threadIdx.y) * STRIDE;
-        int j = blockIdx.x * blockDim.x + threadIdx.x;
+/*
+Implementation delegating STRIDE elements of C to each thread
+*/
 
-        if (i < m && j < n)
-        {
-            for(q = 0; q < k; q++){
-                sum = 0.0;
-                for(l = 0; l < STRIDE; l++){
-                    if (i + l < m)
-                        sum += A[(i+l)*k + q] * B[q*n + j];
-                }
-                C[(i+l)*n+j] = sum;
+
+#define STRIDE 4
+
+__global__ void kernel4(double *A, double *B, double *C,int k,int m,int n){
+    int i, j, q, l;
+    double sum;
+        
+    //Computing the global coordinates of the thread
+    int i = (blockIdx.y * blockDim.y + threadIdx.y) * STRIDE;
+    int j = blockIdx.x * blockDim.x + threadIdx.x;
+
+    if (i < m && j < n)
+    {
+        for(q = 0; q < k; q++){
+            sum = 0.0;
+            for(l = 0; l < STRIDE; l++){
+                if (i + l < m)
+                    sum += A[(i+l)*k + q] * B[q*n + j];
             }
+            C[(i+l)*n+j] = sum;
         }
     }
 }
 
 extern "C" {
-    void matmult_gpu3(int m, int n, int k, double *A, double *B, double *C) {
+    void matmult_gpu4(int m, int n, int k, double *A, double *B, double *C) {
         double* A_d, * B_d, * C_d;
         //Cuda allocate memory on device for matrices
         cudaMalloc((void**)&A_d, m*k * sizeof(double));
@@ -50,8 +54,7 @@ extern "C" {
         //Defining grid size
         dim3 blocksPerGrid(d1, d2);
 
-        kernel3_below<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
-        //kernel3_right<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
+        kernel4<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
         
         cudaDeviceSynchronize();
 
