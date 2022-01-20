@@ -1,16 +1,14 @@
+#include <cuda_runtime.h>
+#include "cublas_v2.h"
+#include "stdio.h"
 
 extern "C" {
-    #include <cuda_runtime.h>
-    #include "cublas_v2.h"
-    #include "stdio.h"
 
     void matmult_gpulib(int m, int n, int k, double *A, double *B, double *C) {
-    
-
+        double *A_d, *B_d, *C_d;
         double alpha = 1.0;
         double beta = 0.0;
 
-        double* A_d, * B_d, * C_d;
         //Cuda allocate memory on device for matrices
         cudaMalloc((void**)&A_d, m*k * sizeof(double));
         cudaMalloc((void**)&B_d, k*n * sizeof(double));
@@ -26,7 +24,7 @@ extern "C" {
         cublasHandle_t handle;
         cublasCreate(&handle);
 
-        cublasDgemm(handle, CUBLAS_OP_N, CUBLAS_OP_N, m, n, k, &alpha, &A_d[0], k, &d_B[0], n, &beta, &C_d[0], n);
+        cublasDgemm(handle, CUBLAS_OP_N, CUBLAS_OP_N, m, n, k, &alpha, &A_d[0], k, &B_d[0], n, &beta, &C_d[0], n);
 
         cublasDestroy(handle);
 
