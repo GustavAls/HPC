@@ -55,6 +55,8 @@ __global__ void kernel4_6(int m,int n, int k, double *A, double *B, double *C){
 }
 
 extern "C" {
+    #include <omp.h>
+    #include <stdio.h>
     void matmult_gpu4(int m, int n, int k, double *A, double *B, double *C) {
         double* A_d, * B_d, * C_d;
         //Cuda allocate memory on device for matrices
