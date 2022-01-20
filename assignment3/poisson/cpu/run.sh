@@ -11,11 +11,11 @@ OUTFILE=cpu.txt
 
 module load gcc/10.3.0-binutils-2.36.1
 
-NS="64 128 256 512"
+NS="2 4 8 16 32 64 128 256 512"
 ITER=100
 THRESH=0.01
 START_AT=20
-N_THREADS="1 4 12 24"
+N_THREADS="1"
 
 rm -rf $DIRECTORY/$OUTFILE
 
