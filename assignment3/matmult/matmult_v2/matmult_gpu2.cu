@@ -2,7 +2,7 @@
 Implementation using one thread pr. element in C
 */
 __global__ void kernel2(int m, int n, int k, double *A, double *B, double *C) {
-    double sum = 0;
+    double sum = 0.0;
     int i, j, q;
 
     //Computing the global coordinates of the thread
