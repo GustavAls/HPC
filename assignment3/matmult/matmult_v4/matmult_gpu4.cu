@@ -55,6 +55,8 @@ __global__ void kernel4_6(int m,int n, int k, double *A, double *B, double *C){
 }
 
 extern "C" {
+    #include <omp.h>
+    #include <stdio.h>
     void matmult_gpu4(int m, int n, int k, double *A, double *B, double *C) {
         double* A_d, * B_d, * C_d;
         //Cuda allocate memory on device for matrices
@@ -84,8 +86,11 @@ extern "C" {
         //Defining grid size
         dim3 blocksPerGrid(d1, d2);
 
+        double start = omp_get_wtime();
         kernel4_4<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
         //kernel4_6<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
+        double seconds = omp_get_wtime() - start;
+		printf("Run time (s): %f", seconds);
         
         cudaDeviceSynchronize();
 
