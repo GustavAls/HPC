@@ -33,7 +33,7 @@ main(int argc, char *argv[])
     int N = atoi(argv[1]);
     const long nElms = N * N * N; // Number of elements.
     const int start_T = 20;
-    const int iterations = 10000;
+    const int iterations = 100;
     
 
     double 	***u_h = NULL;

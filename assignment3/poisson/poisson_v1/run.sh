@@ -1,9 +1,10 @@
 #!/bin/bash
-#BSUB -J cpu
-#BSUB -q hpcintro
+#BSUB -J gpu_sequential
+#BSUB -q hpcintrogpu
 #BSUB -W 00:40
 #BSUB -R "rusage[mem=2048MB] span[hosts=1]"
-#BSUB -n 24
+#BSUB -n 1
+#BSUB -gpu "num=1:mode=exclusive_process"
 EXECUTABLE=example3d
 DIRECTORY=experiments
 OUTFILE=gpu_sequential.txt

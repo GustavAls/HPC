@@ -75,8 +75,8 @@ extern "C" {
 
         //Defining the grid layout depending on the input dimensions
         //For right
-        //d1 = (int) (m - 1) / block_size + 1;
-        //d2 = (int) (n / 2 - 1) / block_size + 1;
+        // d1 = (int) (m - 1) / block_size + 1;
+        // d2 = (int) (n / 2 - 1) / block_size + 1;
         
         //For below
         d1 = (int) (m / 2 - 1) / block_size + 1;
