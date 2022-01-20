@@ -1,5 +1,5 @@
 TARGET= example3d
-OBJS	= alloc3d.o alloc3d_gpu.o transfer3d_gpu.o example3d.o
+OBJS	= alloc3d.o alloc3d_gpu.o transfer3d_gpu.o example3d.o jacobi.o initialize_data.o calculate_f.o
 
 OPT	= -g -O3
 ISA	= 
@@ -29,3 +29,8 @@ $(TARGET): $(OBJS)
 
 clean:
 	@/bin/rm -f *.o $(TARGET)
+
+
+initialize_data.o: initialize_data.h calculate_f.h
+calculate_f.o: calculate_f.h
+
