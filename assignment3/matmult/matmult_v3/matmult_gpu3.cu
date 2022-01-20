@@ -85,9 +85,12 @@ extern "C" {
 
         //Defining grid size
         dim3 blocksPerGrid(d1, d2);
-
+        
+        double start = omp_get_wtime();
         //kernel3_right<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
         kernel3_below<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
+        double seconds = omp_get_wtime() - start;
+		printf("Run time (s): %f", seconds);
         
         cudaDeviceSynchronize();
 
