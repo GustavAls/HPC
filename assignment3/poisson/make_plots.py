@@ -14,6 +14,7 @@ def load_data(filename):
     data["iter_per_sec"] = iterations / data["wall"]
     data["flops"] = 12*data["N"]**3 * data["iter_per_sec"] 
     data["Gflops"] = data["flops"]*1e-9
+    data["Effective bandwidth"] = data["N"]**3
     # data["speedup"] = [data.query(f"threads == 1 and N == {row.N}")["wall"].item()/row["wall"] for i, row in data.iterrows()]
     return data
 
