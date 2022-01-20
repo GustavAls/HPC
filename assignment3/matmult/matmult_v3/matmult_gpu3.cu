@@ -91,10 +91,10 @@ extern "C" {
         double start = omp_get_wtime();
         //kernel3_right<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
         kernel3_below<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
-        double seconds = omp_get_wtime() - start;
-		printf("Run time (s): %f", seconds);
 
         cudaDeviceSynchronize();
+        double seconds = omp_get_wtime() - start;
+		printf("Run time (s): %f", seconds);
 
         //Copying result to host
         cudaMemcpy(C, C_d, m*n*sizeof(double), cudaMemcpyDeviceToHost);
