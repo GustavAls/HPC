@@ -24,7 +24,7 @@ extern "C" {
         cublasHandle_t handle;
         cublasCreate(&handle);
 
-        cublasDgemm(handle, CUBLAS_OP_N, CUBLAS_OP_N, m, n, k, &alpha, &A_d[0], k, &d_B[0], n, &beta, &C_d[0], n);
+        cublasDgemm(handle, CUBLAS_OP_N, CUBLAS_OP_N, m, n, k, &alpha, &A_d[0], k, &B_d[0], n, &beta, &C_d[0], n);
 
         cublasDestroy(handle);
 
