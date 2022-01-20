@@ -8,11 +8,10 @@
 #BSUB -n 1
 #BSUB -gpu "num=1:mode=exclusive_process"
 module load gcc/10.3.0-binutils-2.36.1
-module load cuda/11.3
+module load cuda/11.5.1
 
 declare -A size_its
 size_its=( [512]=1000 [1024]=100 [2048]=10 [4096]=1 )
-METHOD = lib
 OUTFILE="results_cpu.txt"
 rm -f $OUTFILE
 

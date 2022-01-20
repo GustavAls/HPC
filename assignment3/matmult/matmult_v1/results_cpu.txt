@@ -1,0 +1,5 @@
+Run time (s): 0.033707    6144.000   7957.270 # matmult_lib
+Run time (s): 0.031580   24576.000  67907.590 # matmult_lib
+Run time (s): 0.229990   98304.000  74676.052 # matmult_lib
+Run time (s): 1.750584  393216.000  78494.624 # matmult_lib
+Run time (s): 14.326735 1572864.000  76743.228 # matmult_lib
