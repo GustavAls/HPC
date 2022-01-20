@@ -131,11 +131,15 @@ main(int argc, char *argv[])
     cudaSetDevice(0);
     cudaDeviceEnablePeerAccess(1, 0);
     transfer_3d(u_d0, u_h, N / 2, N, N, cudaMemcpyHostToDevice);
+    transfer_3d(uo_d0, uo_h, N / 2, N, N, cudaMemcpyHostToDevice);
+    transfer_3d(f_d0, f_h, N / 2, N, N, cudaMemcpyHostToDevice);
 
     // Transfer bottom part to device 1.
     cudaSetDevice(1);
     cudaDeviceEnablePeerAccess(0, 0);
     transfer_3d(u_d1, u_h + nElms / 2, N / 2, N, N, cudaMemcpyHostToDevice);
+    transfer_3d(uo_d1, uo_h + nElms / 2, N / 2, N, N, cudaMemcpyHostToDevice);
+    transfer_3d(f_d1, f_h + nElms / 2, N / 2, N, N, cudaMemcpyHostToDevice);
 
     // kernel settings
     dim3 blocksize(8, 8, 8); // 8*8*8 < 1024

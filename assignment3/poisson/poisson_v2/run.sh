@@ -13,7 +13,7 @@ OUTFILE=1gpu.txt
 module load cuda/11.5.1
 module load gcc/10.3.0-binutils-2.36.1
 
-NS="64"
+NS="64 128 256 512"
 
 rm -rf $DIRECTORY/$OUTFILE
 
