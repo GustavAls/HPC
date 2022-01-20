@@ -74,14 +74,20 @@ extern "C" {
         dim3 threadsPerBlock(block_size, block_size);
 
         //Defining the grid layout depending on the input dimensions
-        d1 = (int) (m - 1) / block_size + 1;
-        d2 = (int) (n / 2 - 1) / block_size + 1;
+        //For right
+        //d1 = (int) (m - 1) / block_size + 1;
+        //d2 = (int) (n / 2 - 1) / block_size + 1;
+        
+        //For below
+        d1 = (int) (m / 2 - 1) / block_size + 1;
+        d2 = (int) (n - 1) / block_size + 1;
+
 
         //Defining grid size
         dim3 blocksPerGrid(d1, d2);
 
-        // kernel3_below<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
-        kernel3_right<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
+        //kernel3_right<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
+        kernel3_below<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
         
         cudaDeviceSynchronize();
 
