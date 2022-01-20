@@ -4,10 +4,13 @@ Implementation of matrix multiplication which utilizes shared memory
 
 __global__ void kernel5(int m, int n, int k, double *A, double *B, double *C) {
     
+    //Utilizing dynamic shared memory allocation
     extern __shared__ double blocks[];
 
-    __shared__ double* Asub = &blocks[0];
-    __shared__ double* Bsub = &blocks[blockDim.x*blockDim.y];
+    __shared__ double* Asub;
+    Asub =  &blocks[0];
+    __shared__ double* Bsub
+    Bsub =  &blocks[blockDim.x*blockDim.y];
 
     int q, j;
     double sum;
@@ -76,5 +79,5 @@ extern "C" {
 
         //Freeing memory allocated
         cudaFree(A_d); cudaFree(B_d); cudaFree(C_d);
-      }
-  }
+    }
+}

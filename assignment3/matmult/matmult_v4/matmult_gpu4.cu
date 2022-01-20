@@ -4,7 +4,7 @@ Implementation delegating STRIDE elements of C to each thread
 
 #define STRIDE 4
 
-__global__ void kernel4(double *A, double *B, double *C,int k,int m,int n){
+__global__ void kernel4(int m,int n, int k, double *A, double *B, double *C){
     int i, j, q, l;
     double sum;
         
