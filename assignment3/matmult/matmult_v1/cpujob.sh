@@ -11,6 +11,10 @@
 declare -A size_its
 size_its=( [512]=1 [1024]=1 [2048]=1 [4096]=1 [8192]=1 )
 METHOD = lib
+OUTFILE="results_cpu.txt"
+rm -f $OUTFILE
+
+
 
 for size in 512 1024 2048 4096 8192 #10240
     do
