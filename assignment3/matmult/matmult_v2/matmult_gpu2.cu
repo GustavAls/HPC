@@ -21,16 +21,20 @@ __global__ void kernel2(int m, int n, int k, double *A, double *B, double *C) {
   
   
 extern "C" {
+    #include <omp.h>
+    #include <stdio.h>
     void matmult_gpu2(int m, int n, int k, double *A, double *B, double *C) {
         double* A_d, * B_d, * C_d;
         //Cuda allocate memory on device for matrices
         cudaMalloc((void**)&A_d, m*k * sizeof(double));
         cudaMalloc((void**)&B_d, k*n * sizeof(double));
         cudaMalloc((void**)&C_d, m*n * sizeof(double));
-
+        
         //Copy the input parameters unto the device memory
+        double start = omp_get_wtime();
         cudaMemcpy(A_d, A, m*k * sizeof(double), cudaMemcpyHostToDevice);
         cudaMemcpy(B_d, B, k*n * sizeof(double), cudaMemcpyHostToDevice);
+        double seconds = omp_get_wtime() - start;
 
         //Initialize zeros in the output matrix
         cudaMemset(C_d, 0, m*n*sizeof(double));
@@ -47,13 +51,15 @@ extern "C" {
 
         //Defining grid size
         dim3 blocksPerGrid(d1, d2);
-
         kernel2<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
         
         cudaDeviceSynchronize();
 
         //Copying result to host
+        start = omp_get_wtime();
         cudaMemcpy(C, C_d, m*n*sizeof(double), cudaMemcpyDeviceToHost);
+        seconds = omp_get_wtime() - start + seconds;
+        printf("Effective Bandwidth (GB/s): %f", (m*k + n*k)*sizeof(double)/(seconds*1e9));
 
         //Freeing memory allocated
         cudaFree(A_d); cudaFree(B_d); cudaFree(C_d);
