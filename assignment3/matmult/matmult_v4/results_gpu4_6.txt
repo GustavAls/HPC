@@ -1,1 +1,5 @@
-    6144.000     -1.000 1.76151e+13 # matmult_gpu2
+Run time (s): 0.002114    6144.000  61180.777 # matmult_gpu4
+Run time (s): 0.016004   24576.000 107997.444 # matmult_gpu4
+Run time (s): 0.108263   98304.000 145084.845 # matmult_gpu4
+Run time (s): 0.845701  393216.000 156050.368 # matmult_gpu4
+Run time (s): 6.734826 1572864.000 160085.637 # matmult_gpu4

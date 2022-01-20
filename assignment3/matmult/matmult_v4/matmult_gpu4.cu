@@ -55,6 +55,9 @@ __global__ void kernel4_6(int m,int n, int k, double *A, double *B, double *C){
 }
 
 extern "C" {
+    #include <omp.h>
+    #include <time.h>
+    #include <stdio.h>
     void matmult_gpu4(int m, int n, int k, double *A, double *B, double *C) {
         double* A_d, * B_d, * C_d;
         //Cuda allocate memory on device for matrices
@@ -69,9 +72,10 @@ extern "C" {
         //Initialize zeros in the output matrix
         cudaMemset(C_d, 0, m*n*sizeof(double));
 
+
         int d1,d2;
         int block_size = 16;
-        int num_elements = 4;
+        int num_elements = 6;
                 
         //Assigning a 2D thread grid in each block
         dim3 threadsPerBlock(block_size, block_size);
@@ -85,12 +89,12 @@ extern "C" {
         dim3 blocksPerGrid(d1, d2);
 
         double start = omp_get_wtime();
-        kernel4_4<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
-        //kernel4_6<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
-        double seconds = omp_get_wtime() - start;
-		printf("Run time (s): %f", seconds);
+        // kernel4_4<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
+        kernel4_6<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
         
         cudaDeviceSynchronize();
+        double seconds = omp_get_wtime() - start;
+		printf("Run time (s): %f", seconds);
 
         //Copying result to host
         cudaMemcpy(C, C_d, m*n*sizeof(double), cudaMemcpyDeviceToHost);

@@ -1,5 +1,5 @@
-    6144.000  81306.878 # matmult_gpu2
-   24576.000 116642.871 # matmult_gpu2
-   98304.000 142270.955 # matmult_gpu2
-  393216.000 149465.618 # matmult_gpu2
- 1572864.000 151895.502 # matmult_gpu2
+512 Time 0     6144.000  65815.936 # matmult_gpu2
+1024 Time 0    24576.000 121138.014 # matmult_gpu2
+2048 Time 0    98304.000 142097.984 # matmult_gpu2
+4096 Time 0   393216.000 256181.495 # matmult_gpu2
+8192 Time 0  1572864.000 272664.649 # matmult_gpu2
