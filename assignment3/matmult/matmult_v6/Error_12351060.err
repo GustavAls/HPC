@@ -1,0 +1,7 @@
+Loaded module: cuda/11.5.1
+Loaded module: gcc/10.3.0-binutils-2.36.1
+mflops() error -> ./matmult_f.nvcc: undefined symbol: matmult_gpu2
+mflops() error -> ./matmult_f.nvcc: undefined symbol: matmult_gpu2
+mflops() error -> ./matmult_f.nvcc: undefined symbol: matmult_gpu2
+mflops() error -> ./matmult_f.nvcc: undefined symbol: matmult_gpu2
+mflops() error -> ./matmult_f.nvcc: undefined symbol: matmult_gpu2
