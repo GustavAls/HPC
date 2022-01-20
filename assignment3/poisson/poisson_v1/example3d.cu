@@ -15,12 +15,7 @@ void interchange_memory(double ****a, double ****b){
     *a = *b;
     *b = temp;
  }
-//  void interchange_memory(double ***a, double ***b){
-//     double*** temp = a;
-//     a = b;
-//     b = temp;
-//  }
-
+ 
 int
 main(int argc, char *argv[])
 {
@@ -78,6 +73,8 @@ main(int argc, char *argv[])
 
     // CPU -> GPU transfer.
     transfer_3d(u_d, u_h, N, N, N, cudaMemcpyHostToDevice);
+    transfer_3d(uo_d, uo_h, N, N, N, cudaMemcpyHostToDevice);
+    transfer_3d(f_d, f_h, N, N, N, cudaMemcpyHostToDevice);
 
     // CPU controlled loop Jacobi
     double delta = 2.0/((double)N-1.0);

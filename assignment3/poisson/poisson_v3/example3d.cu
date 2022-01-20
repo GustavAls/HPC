@@ -137,6 +137,9 @@ main(int argc, char *argv[])
     // Transfer bottom part to device 1.
     cudaSetDevice(1);
     cudaDeviceEnablePeerAccess(0, 0);
+    // transfer_3d_from_1d(u_d1, &u_h[N/2][0][0], N/2, N, N, cudaMemcpyHostToDevice);
+    // transfer_3d_from_1d(uo_d1, &uo_h[N/2][0][0], N/2, N, N, cudaMemcpyHostToDevice);
+    // transfer_3d_from_1d(f_d1, &f_h[N/2][0][0], N/2, N, N, cudaMemcpyHostToDevice);
     transfer_3d(u_d1, u_h + nElms / 2, N / 2, N, N, cudaMemcpyHostToDevice);
     transfer_3d(uo_d1, uo_h + nElms / 2, N / 2, N, N, cudaMemcpyHostToDevice);
     transfer_3d(f_d1, f_h + nElms / 2, N / 2, N, N, cudaMemcpyHostToDevice);
