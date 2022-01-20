@@ -1,0 +1,5 @@
+    6144.000     -1.000 # matmult_gpu2
+   24576.000     -1.000 # matmult_gpu2
+   98304.000     -1.000 # matmult_gpu2
+  393216.000     -1.000 # matmult_gpu2
+ 1572864.000     -1.000 # matmult_gpu2

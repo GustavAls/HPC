@@ -1,0 +1,67 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 12336566: <GPUMatmult_v1> in cluster <dcc> Exited
+
+Job <GPUMatmult_v1> was submitted from host <n-62-12-21> by user <s174450> in cluster <dcc> at Wed Jan 19 15:09:46 2022
+Job was executed on host(s) <n-62-12-24>, in queue <hpcintrogpu>, as user <s174450> in cluster <dcc> at Wed Jan 19 15:09:47 2022
+</zhome/a9/a/127079> was used as the home directory.
+</zhome/a9/a/127079/Assignment2/HPC/assignment3/matmult/matmult_v1> was used as the working directory.
+Started at Wed Jan 19 15:09:47 2022
+Terminated at Wed Jan 19 16:10:39 2022
+Results reported at Wed Jan 19 16:10:39 2022
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q hpcintrogpu
+#BSUB -J GPUMatmult_v1
+#BSUB -o GPU%J.out
+#BSUB -e Error_%J.err
+#BSUB -R "rusage[mem=2048MB]"
+#BSUB -W 01:00
+#BSUB -n 1
+#BSUB -gpu "num=1:mode=exclusive_process"
+module load cuda/11.5.1
+module load gcc/10.3.0-binutils-2.36.1
+
+
+declare -A size_its
+size_its=([512]=100 [1024]=10 [2048]=1 [4096]=1 [8192]=1)
+
+OUTFILE="results_gpu1.txt"
+rm -f $OUTFILE
+EXECUTABLE=./matmult_f.nvcc
+
+for size in 512 1024 2048 4096 8192
+    do
+        MFLOPS_MAX_IT=${size_its[${size}]} MATMULT_COMPARE=0 $EXECUTABLE gpu1 $size $size $size >> $OUTFILE
+    done
+------------------------------------------------------------
+
+TERM_RUNLIMIT: job killed after reaching LSF run time limit.
+Exited with exit code 140.
+
+Resource usage summary:
+
+    CPU time :                                   3628.00 sec.
+    Max Memory :                                 846 MB
+    Average Memory :                             755.14 MB
+    Total Requested Memory :                     2048.00 MB
+    Delta Memory :                               1202.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   3704 sec.
+    Turnaround time :                            3653 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <Error_12336566.err> for stderr output of this job.
+

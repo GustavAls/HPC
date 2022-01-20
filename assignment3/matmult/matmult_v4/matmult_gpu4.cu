@@ -2,15 +2,15 @@
 Implementation delegating STRIDE elements of C to each thread
 */
 
-#define STRIDE 4
+#define STRIDE 8
 
 __global__ void kernel4(int m,int n, int k, double *A, double *B, double *C){
     int i, j, q, l;
     double sum;
         
     //Computing the global coordinates of the thread
-    int i = (blockIdx.y * blockDim.y + threadIdx.y) * STRIDE;
-    int j = blockIdx.x * blockDim.x + threadIdx.x;
+    i = (blockIdx.y * blockDim.y + threadIdx.y) * STRIDE;
+    j = blockIdx.x * blockDim.x + threadIdx.x;
 
     if (i < m && j < n)
     {

@@ -9,7 +9,7 @@ __global__ void kernel5(int m, int n, int k, double *A, double *B, double *C) {
 
     __shared__ double* Asub;
     Asub =  &blocks[0];
-    __shared__ double* Bsub
+    __shared__ double* Bsub;
     Bsub =  &blocks[blockDim.x*blockDim.y];
 
     int q, j;
@@ -70,7 +70,7 @@ extern "C" {
         //Defining grid size
         dim3 blocksPerGrid(d1, d2);
 
-        kernel5<<<blocksPerGrid,threadsPerBlock, (2* threadsPerBlock.x * threadsPerBlock.y * sizeof(double)>>>(m, n, k, A_d, B_d, C_d);
+        kernel5<<<blocksPerGrid,threadsPerBlock, (2* threadsPerBlock.x * threadsPerBlock.y * sizeof(double))>>>(m, n, k, A_d, B_d, C_d);
         
         cudaDeviceSynchronize();
 
