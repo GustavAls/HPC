@@ -1,0 +1,66 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 12355277: <GPUMatmult_v2> in cluster <dcc> Done
+
+Job <GPUMatmult_v2> was submitted from host <n-62-12-21> by user <s174433> in cluster <dcc> at Fri Jan 21 15:35:16 2022
+Job was executed on host(s) <n-62-12-24>, in queue <hpcintrogpu>, as user <s174433> in cluster <dcc> at Fri Jan 21 15:35:18 2022
+</zhome/14/5/127713> was used as the home directory.
+</zhome/14/5/127713/Documents/HPC/assignment3/matmult/matmult_v2> was used as the working directory.
+Started at Fri Jan 21 15:35:18 2022
+Terminated at Fri Jan 21 15:35:34 2022
+Results reported at Fri Jan 21 15:35:34 2022
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q hpcintrogpu
+#BSUB -J GPUMatmult_v2
+#BSUB -o GPU%J.out
+#BSUB -e Error_%J.err
+#BSUB -R "rusage[mem=5GB]"
+#BSUB -W 01:00
+#BSUB -n 1
+#BSUB -gpu "num=1:mode=exclusive_process"
+module load cuda/11.5.1
+module load gcc/10.3.0-binutils-2.36.1
+
+declare -A size_its
+size_its=([512]=1 [1024]=1 [2048]=1 [4096]=1 [8192]=1)
+
+OUTFILE="results_gpu2.txt"
+rm -f $OUTFILE
+EXECUTABLE=./matmult_f.nvcc
+
+for size in 512 1024 2048 4096 8192
+    do
+        echo -n "$size " >> $OUTFILE 
+        MFLOPS_MAX_IT=${size_its[${size}]} MATMULT_COMPARE=0 $EXECUTABLE gpu2 $size $size $size >> $OUTFILE
+    done
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   15.77 sec.
+    Max Memory :                                 848 MB
+    Average Memory :                             802.00 MB
+    Total Requested Memory :                     5120.00 MB
+    Delta Memory :                               4272.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                7
+    Run time :                                   25 sec.
+    Turnaround time :                            18 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <Error_12355277.err> for stderr output of this job.
+
