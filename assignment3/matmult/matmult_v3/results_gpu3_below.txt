@@ -1,5 +1,5 @@
-    6144.000  91112.256 # matmult_gpu3
-   24576.000 126713.472 # matmult_gpu3
-   98304.000 146357.925 # matmult_gpu3
-  393216.000 153607.261 # matmult_gpu3
- 1572864.000 156579.404 # matmult_gpu3
+Run time (s): 0.001802    6144.000  59249.838 # matmult_gpu3
+Run time (s): 0.007112   24576.000 193474.514 # matmult_gpu3
+Run time (s): 0.053804   98304.000 268433.030 # matmult_gpu3
+Run time (s): 0.430129  393216.000 295388.771 # matmult_gpu3
+Run time (s): 3.449926 1572864.000 306795.484 # matmult_gpu3
