@@ -75,7 +75,7 @@ extern "C" {
 
         int d1,d2;
         int block_size = 16;
-        int num_elements = 6;
+        int num_elements = 4;
                 
         //Assigning a 2D thread grid in each block
         dim3 threadsPerBlock(block_size, block_size);
