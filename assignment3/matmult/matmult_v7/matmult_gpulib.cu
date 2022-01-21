@@ -3,7 +3,8 @@
 #include "stdio.h"
 
 extern "C" {
-
+    #include <omp.h>
+    #include <stdio.h>
     void matmult_gpulib(int m, int n, int k, double *A, double *B, double *C) {
         double *A_d, *B_d, *C_d;
         double alpha = 1.0;
@@ -24,8 +25,10 @@ extern "C" {
         cublasHandle_t handle;
         cublasCreate(&handle);
 
+        double start = omp_get_wtime();
         cublasDgemm(handle, CUBLAS_OP_N, CUBLAS_OP_N, m, n, k, &alpha, &A_d[0], k, &B_d[0], n, &beta, &C_d[0], n);
-
+        double seconds = omp_get_wtime() - start;
+		printf("Run time (s): %f", seconds);
         cublasDestroy(handle);
 
         //Copying result to host

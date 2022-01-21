@@ -56,10 +56,7 @@ __global__ void kernel4_6(int m,int n, int k, double *A, double *B, double *C){
 
 extern "C" {
     #include <omp.h>
-<<<<<<< HEAD
     #include <time.h>
-=======
->>>>>>> 4b98e7ad0aad04f978b502f5a70a05cc4f6af615
     #include <stdio.h>
     void matmult_gpu4(int m, int n, int k, double *A, double *B, double *C) {
         double* A_d, * B_d, * C_d;
@@ -92,8 +89,8 @@ extern "C" {
         dim3 blocksPerGrid(d1, d2);
 
         double start = omp_get_wtime();
-        // kernel4_4<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
-        kernel4_6<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
+        kernel4_4<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
+        // kernel4_6<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
         
         cudaDeviceSynchronize();
         double seconds = omp_get_wtime() - start;

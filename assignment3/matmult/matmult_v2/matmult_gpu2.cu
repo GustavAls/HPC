@@ -31,10 +31,10 @@ extern "C" {
         cudaMalloc((void**)&C_d, m*n * sizeof(double));
         
         //Copy the input parameters unto the device memory
-        // double start = omp_get_wtime();
+        double start = omp_get_wtime();
         cudaMemcpy(A_d, A, m*k * sizeof(double), cudaMemcpyHostToDevice);
         cudaMemcpy(B_d, B, k*n * sizeof(double), cudaMemcpyHostToDevice);
-        // double seconds = omp_get_wtime() - start;
+        double seconds = omp_get_wtime() - start;
 
         //Initialize zeros in the output matrix
         cudaMemset(C_d, 0, m*n*sizeof(double));
@@ -51,20 +51,20 @@ extern "C" {
 
         //Defining grid size
         dim3 blocksPerGrid(d1, d2);
-        double start = omp_get_wtime();
+        // double start = omp_get_wtime();
         kernel2<<<blocksPerGrid,threadsPerBlock>>>(m, n, k, A_d, B_d, C_d);
 
         cudaDeviceSynchronize();
-        double seconds = omp_get_wtime() - start;
+        // double seconds = omp_get_wtime() - start;
 
         //Copying result to host
-        // double start2 = omp_get_wtime();
+        double start2 = omp_get_wtime();
         cudaMemcpy(C, C_d, m*n*sizeof(double), cudaMemcpyDeviceToHost);
-        // double seconds2 = omp_get_wtime() - start2;
+        double seconds2 = omp_get_wtime() - start2;
 
-        // seconds = seconds + seconds2;
-        // printf("Effective Bandwidth (GB/s): %f", (m*k + n*k)*sizeof(double)/(seconds*1e9));
-        printf("Time %d ", seconds);
+        seconds = seconds + seconds2;
+        printf("Bandwidth (GB/s): %f", (m*k + n*k)*sizeof(double)/(seconds*1e11));
+        // printf("Time %f ", seconds);
         //Freeing memory allocated
         cudaFree(A_d); cudaFree(B_d); cudaFree(C_d);
       }

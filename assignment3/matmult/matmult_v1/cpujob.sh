@@ -8,27 +8,15 @@
 #BSUB -n 1
 #BSUB -gpu "num=1:mode=exclusive_process"
 module load gcc/10.3.0-binutils-2.36.1
-<<<<<<< HEAD
 module load cuda/11.5.1
 
 declare -A size_its
 size_its=( [512]=1 [1024]=1 [2048]=1 [4096]=1 )
-=======
-module load cuda/11.3
-
-declare -A size_its
-size_its=( [512]=1000 [1024]=100 [2048]=10 [4096]=1 )
-METHOD = lib
->>>>>>> 4b98e7ad0aad04f978b502f5a70a05cc4f6af615
 OUTFILE="results_cpu.txt"
 rm -f $OUTFILE
 
 for size in 512 1024 2048 4096 8192 #10240
     do
-<<<<<<< HEAD
         MFLOPS_MAX_IT=${size_its[${size}]} MATMULT_COMPARE=0 ./matmult_f.nvcc lib $size $size $size >> $OUTFILE
-=======
-        MATMULT_COMPARE=0 ./matmult_f.nvcc lib $size $size $size >> $OUTFILE
->>>>>>> 4b98e7ad0aad04f978b502f5a70a05cc4f6af615
     done
 
