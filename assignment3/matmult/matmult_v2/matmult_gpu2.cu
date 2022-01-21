@@ -63,8 +63,8 @@ extern "C" {
         double seconds2 = omp_get_wtime() - start2;
 
         seconds = seconds + seconds2;
-        printf("Bandwidth (GB/s): %f", (m*k + n*k)*sizeof(double)/(seconds*1e11));
-        // printf("Time %f ", seconds);
+        // printf("Bandwidth (GB/s): %f", (m*k + n*k)*sizeof(double)/(seconds*1e11));
+        printf("Time %f ", seconds);
         //Freeing memory allocated
         cudaFree(A_d); cudaFree(B_d); cudaFree(C_d);
       }
