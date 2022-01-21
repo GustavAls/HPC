@@ -4,7 +4,7 @@
 #BSUB -q hpcintrogpu
 #BSUB -W 00:40
 #BSUB -R "rusage[mem=5GB] span[hosts=1]"
-#BSUB -n 2
+#BSUB -n 4
 #BSUB -gpu "num=2:mode=exclusive_process"
 EXECUTABLE=example3d
 DIRECTORY=experiments

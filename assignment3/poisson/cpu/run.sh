@@ -4,7 +4,7 @@
 #BSUB -q hpcintro
 #BSUB -W 00:40
 #BSUB -R "rusage[mem=5GB] span[hosts=1]"
-#BSUB -n 24
+#BSUB -n 16
 EXECUTABLE=poisson_j
 DIRECTORY=experiments
 OUTFILE=cpu.txt
