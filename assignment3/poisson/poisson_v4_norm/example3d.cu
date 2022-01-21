@@ -105,7 +105,6 @@ main(int argc, char *argv[])
         jacobi<<<gridsize,blocksize>>>(u_d, uo_d, norm_d, f_d, N, iterations, factor, delta2);
         cudaMemcpy(norm_h, norm_d, sizeof(double), cudaMemcpyDeviceToHost);
         cudaDeviceSynchronize(); // Synchronize globally between each step
-        printf("This is: %f, threshold %f, iterations %d \n", *norm_h, threshold, iterations);
         n++;
     }
     double te = omp_get_wtime() - ts;

@@ -19,5 +19,5 @@ rm -rf $DIRECTORY/$OUTFILE
 
 for N in $NS
 do
-	$EXECUTABLE $N >> $OUTFILE
+	$EXECUTABLE $N >> $DIRECTORY/$OUTFILE
 done

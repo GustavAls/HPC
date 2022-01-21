@@ -148,7 +148,7 @@ main(int argc, char *argv[])
 
     // kernel settings
     dim3 blocksize(8, 8, 8); // 8*8*8 < 1024
-    dim3 gridsize( ceil((int) N/blocksize.x),ceil((int) N/blocksize.y),ceil((int) N/blocksize.z) );
+    dim3 gridsize( ceil((double) N/blocksize.x),ceil((double) N/blocksize.y),ceil((double) N/blocksize.z) );
 
     // ... compute ...
     double delta = 2.0/((double)N-1.0);
