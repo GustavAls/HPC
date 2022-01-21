@@ -11,7 +11,7 @@ module load cuda/11.5.1
 module load gcc/10.3.0-binutils-2.36.1
 
 declare -A size_its
-size_its=([512]=100 [1024]=10 [2048]=1 [4096]=1 [8192]=1)
+size_its=([512]=1 [1024]=1 [2048]=1 [4096]=1 [8192]=1)
 
 OUTFILE="results_gpu5.txt"
 rm -f $OUTFILE
