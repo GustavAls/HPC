@@ -88,8 +88,8 @@ main(int argc, char *argv[])
     cudaMemcpy(norm_d, norm_h, sizeof(double), cudaMemcpyHostToDevice);
 
     // kernel settings
-    dim3 blocksize(8, 8, 8); // 8*8*8 < 1024
-    dim3 gridsize( ceil((int) N/blocksize.x),ceil((int) N/blocksize.y),ceil((int) N/blocksize.z) );
+    dim3 blocksize(32, 1, 1); // 8*8*8 < 1024
+    dim3 gridsize( ceil((double) N/blocksize.x),ceil((double) N/blocksize.y),ceil((double) N/blocksize.z) ); // cast into double for decimal
 
     // CPU controlled loop Jacobi
     double delta = 2.0/((double)N-1.0);
@@ -105,11 +105,9 @@ main(int argc, char *argv[])
         jacobi<<<gridsize,blocksize>>>(u_d, uo_d, norm_d, f_d, N, iterations, factor, delta2);
         cudaMemcpy(norm_h, norm_d, sizeof(double), cudaMemcpyDeviceToHost);
         cudaDeviceSynchronize(); // Synchronize globally between each step
-
         n++;
     }
     double te = omp_get_wtime() - ts;
-
     // GPU -> CPU transfer.
     transfer_3d(u_h, u_d, N, N, N, cudaMemcpyDeviceToHost);
     transfer_3d(uo_h, uo_d, N, N, N, cudaMemcpyDeviceToHost);

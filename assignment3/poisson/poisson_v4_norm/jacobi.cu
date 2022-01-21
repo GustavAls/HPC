@@ -48,6 +48,6 @@ __global__ void jacobi(double ***u,double ***u_old, double *norm,double ***F, in
     blockReduceSum(d);
     if (threadIdx.x == 0 && threadIdx.y == 0 && threadIdx.z == 0 )
     {
-        atomicAdd(norm, d);
+      atomicAdd(norm, d);
     }
 }

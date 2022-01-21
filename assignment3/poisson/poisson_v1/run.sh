@@ -1,5 +1,6 @@
 #!/bin/bash
 #BSUB -J gpu_sequential
+#BSUB -J gpu_sequential_%J.out
 #BSUB -q hpcintrogpu
 #BSUB -W 00:40
 #BSUB -R "rusage[mem=2048MB] span[hosts=1]"
