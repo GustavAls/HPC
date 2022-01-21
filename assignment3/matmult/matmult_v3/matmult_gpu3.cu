@@ -15,14 +15,13 @@ __global__ void kernel3_right(int m, int n, int k, double *A, double *B, double 
         for (q = 0; q < k; q++) {
             //Compute product for first column in B
             sum1 += A[i*k + q] * B[q*n + j];
+            if (j+1 < n) 
+                //Compute product for second column in B
+                sum2 += A[i*k + q] * B[q*n + j+1];
         }
-        C[i*n + j] = sum1;
-    }   
-    if (i < m && j + 1 < n){
-        for (q = 0; q < k; q++) {
-            //Compute product for first column in B
-            sum2 += A[i*k + q] * B[q*n + j+1];                
-        }
+
+    C[i*n + j] = sum1;
+    if (j+1 < n) 
         C[i*n + j + 1] = sum2;
     }
 }
@@ -41,18 +40,14 @@ __global__ void kernel3_below(int m, int n, int k, double *A, double *B, double 
     if (i < m && j < n){
         for (q = 0; q < k; q++) {
             sum1 += A[i*k + q] * B[q*n + j];
+            if (i+1 < m) 
+                sum2 += A[(i+1)*k + q] * B[q*n + j];
         }
-    C[i*n + j] = sum1;
-    }
     
-    if (i + 1 < m && j < n){
-        for (q = 0; q < k; q++) {
-            sum2 += A[(i+1)*k + q] * B[q*n + j];
-        }
+    C[i*n + j] = sum1;
+    if (i+1 < m) 
         C[(i+1)*n + j] = sum2;
     }
-    
-    
 }
 
 
